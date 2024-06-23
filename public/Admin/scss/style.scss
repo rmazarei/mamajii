@@ -1,0 +1,116 @@
+/*-------------------------------------------------------------------
+  ===== Table of Contents =====
+
+  * Bootstrap functions
+  * Template variables
+  * SCSS Compass Functions
+  * Boostrap Main SCSS
+  * Template mixins
+    + Animation Mixins
+    + Background Mixins
+    + Badge Mixins
+    + Button Mixins
+    + Miscellaneous Mixins
+    + BlockQuote Mixins
+    + Cards Mixins
+    + Color Functions Mixins
+    + Tooltips
+    + popovers
+  * Core Styles
+    + Reset Styles
+    + Fonts
+    + Functions
+    + Backgrounds
+    + Typography
+    + Miscellaneous
+    + Footer
+    + Layouts
+    + Utilities
+    + Demo styles
+  * Components
+    + Badges
+    + Boostrap Progress
+    + Buttons
+    + Breadcrumbs
+    + Cards
+    + Checkboxes and Radios
+    + Dropdowns
+    + Forms
+    + Icons
+    + Preview
+    + Tables
+    + Todo List
+  * Landing screens
+    + Auth
+-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------*/
+/* === Import Bootstrap functions and variables === */
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+/*-------------------------------------------------------------------*/
+/* === Import template variables === */
+@import 'variables';
+
+/*-------------------------------------------------------------------*/
+/* === SCSS Compass Functions === */
+@import "../../node_modules/compass-mixins/lib/compass";
+@import "../../node_modules/compass-mixins/lib/animate";
+
+/*-------------------------------------------------------------------*/
+/* === Boostrap Main SCSS === */
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+/*-------------------------------------------------------------------*/
+/* === Template mixins === */
+@import "mixins/_misc";
+@import "mixins/_animation";
+@import "mixins/_background";
+@import "mixins/_badges";
+@import "mixins/_blockqoute";
+@import "mixins/_buttons";
+@import "mixins/_breadcrumbs";
+@import "mixins/_cards";
+@import "mixins/_pagination";
+@import "mixins/_popovers";
+@import "mixins/_tooltips";
+@import "mixins/_text";
+
+/*-------------------------------------------------------------------*/
+/* === Core Styles === */
+@import "reset";
+@import "fonts";
+@import "functions";
+@import "typography";
+@import "misc";
+@import "footer";
+@import "utilities";
+@import "demo";
+@import "dashboard";
+
+/*-------------------------------------------------------------------*/
+/* === Components === */
+@import "components/_badges";
+@import "components/_bootstrap-progress";
+@import "components/_buttons";
+@import "components/_breadcrumbs";
+@import "components/_cards";
+@import "components/_checkbox-radio";
+@import "components/_dropdown";
+@import "components/_forms";
+@import "components/_icons";
+@import "components/_lists";
+@import "components/_preview";
+@import "components/_tables";
+@import "components/_todo-list";
+
+/*-------------------------------------------------------------------*/
+/* === Landing screens === */
+@import "landing-screens/_auth";
+
+
+@import 'navbar';
+@import 'sidebar';
+@import 'layouts';
+@import 'vertical-wrapper';
