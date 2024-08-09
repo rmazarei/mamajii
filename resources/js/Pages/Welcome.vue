@@ -27,7 +27,7 @@ function handleImageError() {
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="صفحه اصلی" />
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" />
         <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
@@ -38,12 +38,11 @@ function handleImageError() {
                         <img src="/images/logo01.png" alt="mamajii" class="w-[150px] border border-white">
                     </div>
                     <div class="main-nav-desktop flex flex-row-reverse justify-between text-[#707070] lg:col-span-2">
-                        <div><Link :href="a">صفحه اصلی</Link></div>
-                        <div><Link :href="a">مقالات</Link></div>
-                        <div><Link :href="a">دوره‌های ماماجی</Link></div>
-                        <div><Link :href="a">درباره ما</Link></div>
-                        <div><Link :href="a">تماس با ما</Link></div>
-                        <div><Link :href="a">مقالات</Link></div>
+                        <div><Link :href="'/'">صفحه اصلی</Link></div>
+                        <div><Link :href="'/articles'">مقالات</Link></div>
+                        <div><Link :href="'/courses'">دوره‌های ماماجی</Link></div>
+                        <div><Link :href="'/about'">درباره ما</Link></div>
+                        <div><Link :href="'/contact'">تماس با ما</Link></div>
                     </div>
                     <nav v-if="canLogin" class="flex flex-1 justify-end">
                         <Link
