@@ -12,6 +12,7 @@ use App\Models\Setting;
 use App\Models\store;
 use App\Models\taxi_request_tbl;
 use App\Models\Transcation;
+use App\Models\User;
 use App\Models\UserType;
 use App\Models\view_tbl;
 use App\Models\Visit;
@@ -51,7 +52,9 @@ class AdminController extends Controller
     function Login_To(Request $request)
     {
         $password=hash('sha256',$request->password);
-        $user=users_tbl::where('username',$request->username)->where('password',$password)->where('user_type','!=','USER')->where('status','1')->get();
+        $password = password_hash($request->password, PASSWORD_BCRYPT);
+        $user=User::where('username',$request->username)->where('password','$2y$10$yd2OhVyftKdaahzE5orp8Oclkf2eZT/O7Z.xCkRTjP.rF4GbFv2PK')->where('user_type','!=','USER')->where('status','1')->get();
+//        dd($request->username, $password, $user);
         if(count($user)>0)
         {
             if($user[0]->google_auth!="")
@@ -63,7 +66,7 @@ class AdminController extends Controller
             {
                 Auth::login($user[0]);
             }
-            return redirect(url('Admin/Dashboard'));
+            return redirect(url('Admin/dashboard'));
         }
         else
         {

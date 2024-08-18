@@ -6,17 +6,7 @@ import {Link} from "@inertiajs/vue3";
 <template>
     <header class="grid items-center gap-2 py-5 lg:grid-cols-4 bg-white">
 
-        <div class="flex">
-            <img src="/images/logo01.png" alt="mamajii" class="w-[150px] border border-white">
-        </div>
-        <div class="main-nav-desktop flex flex-row-reverse justify-between text-[#707070] lg:col-span-2">
-            <div><Link :href="'/'">صفحه اصلی</Link></div>
-            <div><Link :href="'/articles'">مقالات</Link></div>
-            <div><Link :href="'/courses'">دوره‌های ماماجی</Link></div>
-            <div><Link :href="'/about'">درباره ما</Link></div>
-            <div><Link :href="'/contact'">تماس با ما</Link></div>
-        </div>
-        <nav  class="flex flex-1 justify-end">
+        <nav  class="flex flex-1 justify-start">
             <Link
                 v-if="$page.props.auth.user"
                 :href="route('dashboard')"
@@ -43,6 +33,16 @@ import {Link} from "@inertiajs/vue3";
                 </div>
             </template>
         </nav>
+        <div class="main-nav-desktop flex justify-between text-[#707070] lg:col-span-2">
+            <div><Link :href="'/'">صفحه اصلی</Link></div>
+            <div><Link :href="'/articles'">مقالات</Link></div>
+            <div><Link :href="'/courses'">دوره‌های ماماجی</Link></div>
+            <div><Link :href="'/about'">درباره ما</Link></div>
+            <div><Link :href="'/contact'">تماس با ما</Link></div>
+        </div>
+        <div class="flex justify-end">
+            <img src="/images/logo01.png" alt="mamajii" class="w-[150px] border border-white">
+        </div>
 
     </header>
 </template>

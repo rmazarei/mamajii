@@ -11,12 +11,7 @@ class GeneralController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-        ]);
+        return Inertia::render('Index', );
     }
 
     public function about(): \Inertia\Response

@@ -63,7 +63,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                        data-toggle="dropdown">
                         <i class="mdi mdi-bell-outline"></i>
 
-                        @if(count(\App\Models\Notification::join('users_tbls','notifications.user_id','=','users_tbls.id')->where('users_tbls.login_token',session('login_token'))->where('seen',false)->get())>0)
+                        @if(count(\App\Models\Notification::join('users','notifications.user_id','=','users.id')->where('users.login_token',session('login_token'))->where('seen',false)->get())>0)
                             <span class="count-symbol bg-danger"></span>
                         @endif
 
@@ -74,7 +74,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         <div class="dropdown-divider"></div>
 
 
-                        @foreach(\App\Models\Notification::join('users_tbls','notifications.user_id','=','users_tbls.id')->where('users_tbls.login_token',\Illuminate\Support\Facades\Auth::user()->login_token)->get() as $notification)
+                        @foreach(\App\Models\Notification::join('users','notifications.user_id','=','users.id')->where('users.login_token',\Illuminate\Support\Facades\Auth::user()->login_token)->get() as $notification)
                             <a class="dropdown-item preview-item" href="{{$notification->link}}">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-reddit">
