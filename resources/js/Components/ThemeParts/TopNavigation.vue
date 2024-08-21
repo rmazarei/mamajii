@@ -7,14 +7,23 @@ import {Link} from "@inertiajs/vue3";
     <header class="grid items-center gap-2 py-5 lg:grid-cols-4 bg-white">
 
         <nav  class="flex flex-1 justify-start">
-            <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="rounded-full px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-            >
-                داشبورد
-            </Link>
+            <!--                class="rounded-full px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"-->
+            <template v-if="$page.props.auth.user">
+                <Link
+                    v-if="$page.props.auth.user.user_type !== 'admin'"
+                    :href="route('dashboard')"
+                    class="bg-blue-400 text-white rounded-full p-2"
+                >
+                    داشبورد
+                </Link>
+                <a v-else class="bg-blue-400 text-white rounded-full p-2" :href="route('admin.dashboard')">
+                    داشبورد
+                </a>
 
+            </template>
+            <template v-else>
+
+            </template>
             <template v-else>
                 <div class="bg-blue-400 text-white rounded-full p-2">
                     <Link

@@ -49,8 +49,12 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="/Admin/Logout">
-                            <i class="mdi mdi-logout mr-2 text-primary"></i>{{__('all_strings.Exit')}}</a>
+                        <form action="{{route('logout')}}">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                <i class="mdi mdi-logout mr-2 text-primary"></i>{{__('all_strings.Exit')}}
+                            </button>
+                        </form>
                     </div>
                 </li>
                 <li class="nav-item d-none d-lg-block full-screen-link">
@@ -137,7 +141,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/Categories')}}">
+                        <a class="nav-link" href="{{url('/admin/categories')}}">
                             <span class="menu-title">{{__('all_strings.categories')}}</span>
                             <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                         </a>
@@ -280,10 +284,15 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/Logout')}}">
-                            <span class="menu-title">{{__('all_strings.Exit')}}</span>
-                            <i class="mdi mdi-logout menu-icon"></i>
-                        </a>
+
+                        <form action="{{route('logout')}}">
+                            @csrf
+                            <button type="submit" class="nav-link" >
+                                <span class="menu-title">{{__('all_strings.Exit')}}</span>
+                                <i class="mdi mdi-logout menu-icon"></i>
+                            </button>
+                        </form>
+
                     </li>
 
                 </ul>
@@ -303,19 +312,28 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                             </div>
                             <div class="nav-profile-text d-flex flex-column" style="margin-right: 10px;">
                                 <span class="font-weight-bold mb-2">{{$user_profiel_data->username}}</span>
-                                پزشک
+                                {{ $user_profiel_data->user_type  }}
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/Dashboard')}}">
+                        <a class="nav-link" href="{{route('admin.dashboard')}}">
                             <span class="menu-title">{{__('all_strings.Dashboard')}}</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/Categories')}}">
+                        <a class="nav-link" href="{{route('admin.hospitals.index')}}">
+                            <span class="menu-title">{{__('all_strings.hospitals')}}</span>
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                        </a>
+                    </li>
+
+
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/admin/categories')}}">
                             <span class="menu-title">{{__('all_strings.categories')}}</span>
                             <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                         </a>
@@ -351,11 +369,20 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                             <i class="mdi mdi-account menu-icon"></i>
                         </a>
                     </li>
+                    -->
+
+
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/Logout')}}">
-                            <span class="menu-title">{{__('all_strings.Exit')}}</span>
-                            <i class="mdi mdi-logout menu-icon"></i>
-                        </a>
+
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit" class="nav-link border-0 w-100 bg-transparent" >
+                                <span class="menu-title">{{__('all_strings.Exit')}}</span>
+                                <i class="mdi mdi-logout menu-icon"></i>
+                            </button>
+                        </form>
+
                     </li>
 
                 </ul>
