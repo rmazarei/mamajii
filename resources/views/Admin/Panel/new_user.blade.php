@@ -83,8 +83,8 @@
                         </div>
 
 
-                        <link rel = "stylesheet" href = "{{asset('Admin/Map/leaflet.css')}}" />
-                        <script src = "{{asset('Admin/Map/leaflet.js')}}"></script>
+                        <link rel = "stylesheet" href = "{{asset('admin-assets/Map/leaflet.css')}}" />
+                        <script src = "{{asset('admin-assets/Map/leaflet.js')}}"></script>
                         <script>
 
                             var mapOptions = {

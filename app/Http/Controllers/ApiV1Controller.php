@@ -16,7 +16,7 @@ use App\Models\view_tbl;
 use App\Models\visit;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use App\Models\users_tbl;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\report_tbl;
 use App\Models\reportDetail;
@@ -43,7 +43,7 @@ class ApiV1Controller extends Controller
     //Login Function Start
     function Login(Request $request)
     {
-        $users=users_tbl::where('phone',$request->phone)->where('user_type','USER')->first();
+        $users=User::where('phone',$request->phone)->where('user_type','USER')->first();
         $code=rand(1000,9999);
         $v_code=hash('sha256',$code);
 
@@ -70,7 +70,7 @@ class ApiV1Controller extends Controller
 
         if($users==null)
         {
-            $user = new users_tbl();
+            $user = new User();
             $user->username="USR".date('Y-m-d h:i:sa');
             $user->email="";
             $user->phone=$request->phone;
@@ -94,7 +94,7 @@ class ApiV1Controller extends Controller
             $user->profile_image_file_id=1;
             $user->save();
 
-            $users=users_tbl::where('phone',$request->phone)->where('user_type','USER')->first();
+            $users=User::where('phone',$request->phone)->where('user_type','USER')->first();
             $user_verify=new userVerify();
             $user_verify->hash_code=$v_code;
             $user_verify->user_id=$users->id;
@@ -102,7 +102,7 @@ class ApiV1Controller extends Controller
         }
         else
         {
-            $users=users_tbl::where('phone',$request->phone)->where('user_type','USER')->first();
+            $users=User::where('phone',$request->phone)->where('user_type','USER')->first();
             $user_verify=new userVerify();
             $user_verify->hash_code=$v_code;
             $user_verify->user_id=$users->id;
@@ -118,7 +118,7 @@ class ApiV1Controller extends Controller
     function Verify(Request $request)
     {
 
-        $user=users_tbl::where('phone',$request->phone)->where("user_type","USER")->first();
+        $user=User::where('phone',$request->phone)->where("user_type","USER")->first();
 
         if($user!=null)
         {
@@ -150,7 +150,7 @@ class ApiV1Controller extends Controller
     //User Notifications Start
     function Notifications(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        $user=User::where('login_token',$request->header('auth'))->first();
         $notifications=Notification::where('user_id',$user->id)->get();
         Notification::where('user_id',$user->id)->update(array("seen"=>true));
         return $notifications;
@@ -162,7 +162,7 @@ class ApiV1Controller extends Controller
     function GetCityAllDoctors(Request $request)
     {
         $city=City::where('name',$request->city)->where('area','!=',0)->where('status','1')->first();
-        $doctors=users_tbl::join('Files','users_tbls.profile_image_file_id','=','Files.id')->join('UserType','users_tbls.user_type','=','UserType.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('city_id',$city->id)->where('status','1')->get();
+        $doctors=User::join('Files','Users.profile_image_file_id','=','Files.id')->join('UserType','Users.user_type','=','UserType.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('city_id',$city->id)->where('status','1')->get();
 
         $reponse=array();
         foreach ($doctors as $doctor)
@@ -190,7 +190,7 @@ class ApiV1Controller extends Controller
     //Get All doctor by city start
     function GetSearchDoctor(Request $request)
     {
-        $doctors=users_tbl::join('Files','users_tbls.profile_image_file_id','=','Files.id')->join('UserType','users_tbls.user_type','=','UserType.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('status','1')->where('name','LIKE','%'.$request->search.'%')->orwhere('family','LIKE','%'.$request->search.'%')->get();
+        $doctors=User::join('Files','Users.profile_image_file_id','=','Files.id')->join('UserType','Users.user_type','=','UserType.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('status','1')->where('name','LIKE','%'.$request->search.'%')->orwhere('family','LIKE','%'.$request->search.'%')->get();
 
         $reponse=array();
         foreach ($doctors as $doctor)
@@ -218,12 +218,12 @@ class ApiV1Controller extends Controller
     //Get user start
     function User(Request $request)
     {
-        return $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        return $user=User::where('login_token',$request->header('auth'))->first();
     }
 
     function UserDone(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        $user=User::where('login_token',$request->header('auth'))->first();
 
         $user->name=$request->name;
         $user->family=$request->family;
@@ -237,7 +237,7 @@ class ApiV1Controller extends Controller
 
     function GetCountofNotifications(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        $user=User::where('login_token',$request->header('auth'))->first();
         return array("count"=>count(Notification::where('seen',false)->where('user_id',$user->id)->get()));
     }
     //Get user end
@@ -293,8 +293,8 @@ class ApiV1Controller extends Controller
     //Get payment doctor start
     function GetPaymentDoctorTime(Request $request)
     {
-//        $user=users_tbl::where('login_token',$request->auth)->where('user_type','USER')->where('status','1')->first();
-//        $dcotor=users_tbl::where('id',$request->doctor_id)->first();
+//        $user=User::where('login_token',$request->auth)->where('user_type','USER')->where('status','1')->first();
+//        $dcotor=User::where('id',$request->doctor_id)->first();
 //        $dat=$request->date;
 //        $time=$request->time;
 
@@ -306,8 +306,8 @@ class ApiV1Controller extends Controller
     //Set new doctor time start
     function SetDoctorTime(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->where('user_type','USER')->where('status','1')->first();
-        $dcotor=users_tbl::where('id',$request->doctor_id)->first();
+        $user=User::where('login_token',$request->header('auth'))->where('user_type','USER')->where('status','1')->first();
+        $dcotor=User::where('id',$request->doctor_id)->first();
 
         $visite=new visit();
         $visite->status="0";
@@ -354,7 +354,7 @@ class ApiV1Controller extends Controller
     //Set new hospital time start
     function SetHospitalTime(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->where('user_type','USER')->where('status','1')->first();
+        $user=User::where('login_token',$request->header('auth'))->where('user_type','USER')->where('status','1')->first();
 
         $visite=new visit();
         $visite->status="0";
@@ -401,7 +401,7 @@ class ApiV1Controller extends Controller
 
             if(count($posts)>0)
             {
-                $user=users_tbl::where('id',$category->user_id)->first();
+                $user=User::where('id',$category->user_id)->first();
                 $avatar_=File::where('id',$user->profile_image_file_id)->first();
 
                 $avatar="";
@@ -465,7 +465,7 @@ class ApiV1Controller extends Controller
 
             if(count($posts)>0)
             {
-                $user=users_tbl::where('id',$category->user_id)->first();
+                $user=User::where('id',$category->user_id)->first();
                 $avatar_=File::where('id',$user->profile_image_file_id)->first();
 
                 $avatar="";
@@ -511,9 +511,9 @@ class ApiV1Controller extends Controller
     //Get package info start
     function GetPackageInfo(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        $user=User::where('login_token',$request->header('auth'))->first();
         $category=Category::where('id',$request->Pack_Id)->first();
-        $doctor=users_tbl::where('id',$category->user_id)->first();
+        $doctor=User::where('id',$category->user_id)->first();
         $doctor_type="";
         if($doctor->user_type=="ADMIN")
         {
@@ -546,7 +546,7 @@ class ApiV1Controller extends Controller
     //Get All chats start
     function GetAllChats(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        $user=User::where('login_token',$request->header('auth'))->first();
         return Chat::where('user_id',$user->id)->where('doctor_id',$request->doctor_id)->get();
     }
     //Get All chats end
@@ -555,7 +555,7 @@ class ApiV1Controller extends Controller
     //Get add new chat start
     function AddNewChat(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        $user=User::where('login_token',$request->header('auth'))->first();
 
         $chat=new chat();
         $chat->content=$request->contentt;
@@ -572,7 +572,7 @@ class ApiV1Controller extends Controller
     //Logout Function Start
     function Logout(Request $request)
     {
-        $user=users_tbl::where('login_token',$request->header('auth'))->first();
+        $user=User::where('login_token',$request->header('auth'))->first();
         $user->login_token=hash('sha256', "USR" . $user->login_token);
         $user->save();
     }

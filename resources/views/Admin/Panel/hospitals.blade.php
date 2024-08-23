@@ -77,7 +77,7 @@
                                             <td>{{__('all_strings.passtive')}}</td>
                                         @endif
 
-                                        <td><i onclick="Open_Link_Dialog(this,'{{url('/Admin/Hospitals/Edit')}}/{{$hospital->id}}')" class="mdi mdi-table-edit" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
+                                        <td><i onclick="Open_Link_Dialog(this,'{{route('admin.hospitals.edit', $hospital->id)}}')" class="mdi mdi-table-edit" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
                                     </tr>
                                 @endforeach
 
@@ -86,7 +86,7 @@
                         @else
                             <div style="width: 100%;height: 250px;display: flex;justify-content: center;align-items: center;">
                                 <div style="width: 150px;">
-                                    <img style="margin: 0 auto;" src="{{asset('Admin/images/icons/empty.png')}}" width="150px"/>
+                                    <img style="margin: 0 auto;" src="{{asset('admin-assets/images/icons/empty.png')}}" width="150px"/>
                                     <p style="margin: 10px auto;text-align: center;">{{__('all_strings.notfound')}}</p>
                                 </div>
                             </div>

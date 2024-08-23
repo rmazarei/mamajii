@@ -33,4 +33,5 @@ class GeneralController extends Controller
     {
         return Inertia::render('Articles');
     }
+
 }

@@ -82,7 +82,7 @@
                                     </textarea>
                                 </div>
 
-                                <script src="{{asset('Admin/js/ckeditor.js')}}"></script>
+                                <script src="{{asset('admin-assets/js/ckeditor.js')}}"></script>
 
                                 <script>
                                     // This sample still does not showcase all CKEditor 5 features (!)

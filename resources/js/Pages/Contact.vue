@@ -6,7 +6,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 
 <template>
     <AppLayout title="تماس با ما">
-        <h1 class="text-xl text-blue-500">Contact</h1>
+        <h1 class="text-2xl text-blue-500 text-center my-4 font-bold">تماس</h1>
     </AppLayout>
 </template>
 

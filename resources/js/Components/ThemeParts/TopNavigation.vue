@@ -4,7 +4,7 @@ import {Link} from "@inertiajs/vue3";
 </script>
 
 <template>
-    <header class="grid items-center gap-2 py-5 lg:grid-cols-4 bg-white">
+    <header class="grid items-center gap-2 py-5 lg:grid-cols-4 bg-white shadow-lg">
 
         <nav  class="flex flex-1 justify-start">
             <!--                class="rounded-full px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"-->

@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title" style="text-align: center;">{{__('all_strings.uploadnewfile')}}</h4>
-                    <form method="post" enctype="multipart/form-data" action="/Admin/Hospitals/Gallery/New/{{$hospi_id}}">
+                    <form method="post" enctype="multipart/form-data" action="{{ route('admin.hospitals.gallery.save', $hospi_id) }}">
                         <div style="display: flex;margin-bottom: 20px;">
                             <input type="hidden" value="{{csrf_token()}}" name="_token"/>
                             <input type="file" name="img"/>
@@ -31,7 +31,7 @@
                     @else
                     <div style="width: 100%;height: 250px;display: flex;justify-content: center;align-items: center;">
                         <div style="width: 150px;">
-                            <img style="margin: 0 auto;" src="{{asset('Admin/images/icons/empty.png')}}" width="150px"/>
+                            <img style="margin: 0 auto;" src="{{asset('admin-assets/images/icons/empty.png')}}" width="150px"/>
                             <p style="margin: 10px auto;text-align: center;">{{__('all_strings.notfound')}}</p>
                         </div>
                     </div>

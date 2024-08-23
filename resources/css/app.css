@@ -56,6 +56,42 @@ header {
     justify-content: center;
 }
 
+.home-hospitals {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+
+.home-hospitals > div {
+    background-color: #FFF;
+    display: flex;
+    flex-flow: column;
+
+}
+.home-hospitals > div .hospital-title {
+    margin: 0 1rem;
+
+}
+.home-hospitals .more-info {
+    background-color: #20c2e1;
+    border-radius: 10000px;
+    color: #FFF;
+    padding: .5rem 2rem;
+    transition: all .3s;
+    margin: 1rem auto;
+}
+.home-hospitals .more-info:hover {
+    background-color: #6ddaef;
+    transition: all .3s;
+}
+
+.hospital-info > div > span {
+    color: #3b82f6;
+}
+
+
+
 footer {
     background-color: #2f2d64;
     margin-top: 2rem;

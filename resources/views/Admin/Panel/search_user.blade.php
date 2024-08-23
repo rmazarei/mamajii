@@ -77,7 +77,7 @@
                     </div>
                     @else
                         <div class="card-body">
-                            <img src="{{asset('Admin\images\icons\empty.png')}}" style="width: 150px;display: block;margin: 0 auto;"/>
+                            <img src="{{asset('admin-assets\images\icons\empty.png')}}" style="width: 150px;display: block;margin: 0 auto;"/>
                             <p style="text-align: center;">{{_('all_strings.notfound')}}</p>
                         </div>
                     @endif

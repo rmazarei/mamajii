@@ -18,7 +18,7 @@ use App\Models\view_tbl;
 use App\Models\Visit;
 //use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
-use App\Models\users_tbl;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\video_tbl;
 use App\Models\report;
@@ -32,6 +32,8 @@ use Illuminate\Support\Facades\App;
 use ParagonIE\ConstantTime\Base32;
 use PragmaRX\Google2FA\Google2FA;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
+
+use Illuminate\Support\Facades\Log;
 
 //Admin Controller Start
 class AdminController extends Controller
@@ -82,7 +84,7 @@ class AdminController extends Controller
     function Login2F_Done(Request $request)
     {
         $token = $request->session()->get('login_token');
-        $user = users_tbl::where("login_token", $token)->where('user_type', 'ADMIN')->orwhere('user_type', 'ADMINSERVICE')->where('status', '1')->get();
+        $user = User::where("login_token", $token)->where('user_type', 'ADMIN')->orwhere('user_type', 'ADMINSERVICE')->where('status', '1')->get();
         $otp=$request->post("google_auth_code");
         $google2fa = app('pragmarx.google2fa');
         $r=new Google2FA();
@@ -180,7 +182,7 @@ class AdminController extends Controller
     function NotificationSeen(Request $request)
     {
         $output=["Action"=>"OK"];
-        $USER_NOTIFICATIONS=Notification::join('users_tbls','notifications.user_id','=','users_tbls.id')->update(array("seen"=>true));
+        $USER_NOTIFICATIONS=Notification::join('Users','notifications.user_id','=','Users.id')->update(array("seen"=>true));
         return json_encode($output);
     }
     //******************Notification Seen End
@@ -198,7 +200,7 @@ class AdminController extends Controller
     function VisiteSearch(Request $request)
     {
         $visite=visit::where('id',$request->search)->first();
-        $visite_user=users_tbl::where('id',$visite->user_id)->first();
+        $visite_user=User::where('id',$visite->user_id)->first();
         return view('Admin/Panel/visite')->with('visite',$visite)->with('visite_user',$visite_user);
     }
 
@@ -237,7 +239,7 @@ class AdminController extends Controller
         $notif->user_id=$visite->user_id;
         $notif->save();
 
-        $user=users_tbl::where('id',$visite->user_id)->first();
+        $user=User::where('id',$visite->user_id)->first();
 
         //send sms start
         $ch = curl_init();
@@ -269,7 +271,7 @@ class AdminController extends Controller
     function Logout(Request $request)
     {
         $us=Auth::user();
-        $user=Users_Tbl::where('id',$us->id)->get()[0];
+        $user=User::where('id',$us->id)->get()[0];
         $user->login_token=hash('sha256',$user->login_token);
         $user->save();
 
@@ -652,7 +654,7 @@ class AdminController extends Controller
         $location=explode(",",$request->location);
 
         //Get Edit User Data
-        $user=new users_tbl();
+        $user=new User();
         $user->username=$request->username;
         $user->email=$request->email;
         $user->phone=$request->phone;
@@ -689,7 +691,7 @@ class AdminController extends Controller
     //Get User times
     function Get_User_Times(Request $request)
     {
-        $user=users_tbl::where('id',$request->user_id)->first();
+        $user=User::where('id',$request->user_id)->first();
 
         if($user->times!="")
         {
@@ -779,7 +781,7 @@ class AdminController extends Controller
             "start_6"=>$request->start_time_6,'end_6'=>$request->end_time_6,'fri'=>$request->friday_time,
         );
 
-        users_tbl::where('id',$request->user_id)->update(array("times"=>json_encode($tms)));
+        User::where('id',$request->user_id)->update(array("times"=>json_encode($tms)));
         return view('Admin/Panel/done');
     }
 
@@ -798,7 +800,7 @@ class AdminController extends Controller
     //Get Old Notification To User
     function Get_Notification_OF_User(Request $request)
     {
-        $all_notifications=Notification::join('users_tbls','notifications.user_id','=','users_tbls.id')->where('users_tbls.id',$request->User_Id)->get();
+        $all_notifications=Notification::join('Users','notifications.user_id','=','Users.id')->where('Users.id',$request->User_Id)->get();
         return view('Admin/Panel/getnotifications')->with('all_notifications',$all_notifications);
     }
 
@@ -820,7 +822,7 @@ class AdminController extends Controller
     //Get Edit User
     function Get_Edit_User(Request $request)
     {
-        return view('Admin/Panel/edit_user')->with('User',Users_Tbl::where('id',$request->User_Id)->get()[0]);
+        return view('Admin/Panel/edit_user')->with('User',User::where('id',$request->User_Id)->get()[0]);
     }
 
     //Get Edit User Submit
@@ -840,7 +842,7 @@ class AdminController extends Controller
         $location=explode(",",$request->location);
 
         //Get Edit User Data
-        $user=Users_Tbl::where('id',$request->user_id)->get()[0];
+        $user=User::where('id',$request->user_id)->get()[0];
         $user->username=$request->username;
         $user->email=$request->email;
         $user->phone=$request->phone;
@@ -882,7 +884,7 @@ class AdminController extends Controller
 
     function Search_User(Request $request)
     {
-        return view('Admin/Panel/search_user')->with('Users',Users_Tbl::where('username','LIKE','%'.$request->search.'%')->orwhere('phone','LIKE','%'.$request->search.'%')->orwhere('email','LIKE','%'.$request->search.'%')->orwhere('name','LIKE','%'.$request->search.'%')->orwhere('family','LIKE','%'.$request->search.'%')->get())->with("Seach_Value",$request->search);
+        return view('Admin/Panel/search_user')->with('Users',User::where('username','LIKE','%'.$request->search.'%')->orwhere('phone','LIKE','%'.$request->search.'%')->orwhere('email','LIKE','%'.$request->search.'%')->orwhere('name','LIKE','%'.$request->search.'%')->orwhere('family','LIKE','%'.$request->search.'%')->get())->with("Seach_Value",$request->search);
     }
 
     //**********************Get User Manager End
@@ -893,7 +895,7 @@ class AdminController extends Controller
 
     function transactions(Request $request)
     {
-        $all_trans=transcation::join('users_tbls','transcations.user_id','=','users_tbls.id')->get();
+        $all_trans=transcation::join('Users','transcations.user_id','=','Users.id')->get();
         return view('Admin/Panel/alltransactions')->with('all_trans',$all_trans);
     }
 
@@ -982,7 +984,7 @@ class AdminController extends Controller
     function RemoveGroup(Request $request)
     {
         $user_type=UserType::where('id',$request->id)->first();
-        $users=users_tbl::where('user_type',$user_type->en_title)->update(array('user_type'=>'USER'));
+        $users=User::where('user_type',$user_type->en_title)->update(array('user_type'=>'USER'));
         $user_type->delete();
         return redirect()->back();
     }
@@ -1015,7 +1017,7 @@ class AdminController extends Controller
             $profile_image_id=$result;
         }
 
-        $user=Users_Tbl::where('id',$request->user_id)->get()[0];
+        $user=User::where('id',$request->user_id)->get()[0];
         $user->username=$request->username;
         $user->email=$request->email;
         $user->phone=$request->phone;
@@ -1048,7 +1050,7 @@ class AdminController extends Controller
     //Get Active Google Auth
     function PasstiveGoogle2auth(Request $request)
     {
-        $user=Users_Tbl::where('id',1)->get()[0];
+        $user=User::where('id',1)->get()[0];
         $user->google_auth="";
         $user->save();
 
@@ -1064,7 +1066,7 @@ class AdminController extends Controller
         //generate new secret
         $secret = $this->generateSecret();
 
-        $user=Users_Tbl::where('id',1)->get()[0];
+        $user=User::where('id',1)->get()[0];
         $user->google_auth=Crypt::encrypt($secret);
         $user->save();
 
@@ -1141,16 +1143,16 @@ class AdminController extends Controller
 
 
     //Get Galery start
-    function hospitalGallery(Request $request)
+    function hospitalGallery(Request $request, Hospital $hospital)
     {
-        $images=HospitalImg::Where('hospital_id',$request->id)->get();
-        return view('Admin/Panel/hospital_gallery')->with('images',$images)->with('hospi_id',$request->id);
+        $images=HospitalImg::Where('hospital_id',$hospital->id)->get();
+        return view('Admin/Panel/hospital_gallery')->with('images',$images)->with('hospi_id',$hospital->id);
     }
     //Get Galery End
 
 
     //Get Galery start
-    function hospitalGalleryNew(Request $request)
+    function hospitalGalleryNew(Request $request, Hospital $hospital)
     {
         if($request->hasFile('img'))
         {
@@ -1161,7 +1163,7 @@ class AdminController extends Controller
             $image_id=$result;
 
             $hospi=new HospitalImg();
-            $hospi->hospital_id=$request->id;
+            $hospi->hospital_id=$hospital->id;
             $hospi->file_id=$image_id;
             $hospi->save();
 
@@ -1182,10 +1184,10 @@ class AdminController extends Controller
 
 
     //Get Edit Hospital Start
-    function hospitalEdit(Request $request)
+    function hospitalEdit(Request $request, Hospital $hospital)
     {
-        $haspital=Hospital::where('id',$request->id)->first();
-        return view('Admin/Panel/edithospital')->with('haspital',$haspital);
+        // $haspital=Hospital::where('id',$request->id)->first();
+        return view('Admin/Panel/edithospital')->with('haspital',$hospital);
     }
     //Get Edit Hospital End
 
@@ -1286,8 +1288,8 @@ class AdminController extends Controller
     //**********************Get Charts Start
     function Get_Charts()
     {
-        $count_of_all_users=count(users_tbl::where('user_type','USER')->get());
-        $count_of_all_doctors=count(users_tbl::where('user_type','DOCTOR')->get());
+        $count_of_all_users=count(User::where('user_type','USER')->get());
+        $count_of_all_doctors=count(User::where('user_type','DOCTOR')->get());
         return view('Admin/Panel/charts')->with('count_of_all_users',$count_of_all_users)->with('count_of_all_doctors',$count_of_all_doctors);
     }
     //**********************Get Charts End

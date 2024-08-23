@@ -89,7 +89,7 @@
                         @else
                             <div style="width: 100%;height: 250px;display: flex;justify-content: center;align-items: center;">
                                 <div style="width: 150px;">
-                                    <img style="margin: 0 auto;" src="{{asset('Admin/images/icons/empty.png')}}" width="150px"/>
+                                    <img style="margin: 0 auto;" src="{{asset('admin-assets/images/icons/empty.png')}}" width="150px"/>
                                     <p style="margin: 10px auto;text-align: center;">{{__('all_strings.notfound')}}</p>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 
 <template>
     <AppLayout title="درباره ما">
-        <h1>ABOUT</h1>
+        <h1 class="text-2xl text-blue-500 text-center my-4 font-bold">درباره</h1>
     </AppLayout>
 </template>
 

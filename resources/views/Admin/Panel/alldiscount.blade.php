@@ -35,14 +35,14 @@
 
                             <div style="width: 100%;height: 250px;display: flex;justify-content: center;align-items: center;">
                                 <div style="width: 150px;">
-                                    <img style="margin: 0 auto;" src="{{asset('Admin/images/icons/free.png')}}" width="150px"/>
+                                    <img style="margin: 0 auto;" src="{{asset('admin-assets/images/icons/free.png')}}" width="150px"/>
                                     <p style="margin: 10px auto;text-align: center;">{{__('all_strings.notdiscount')}}</p>
                                 </div>
                             </div>
                         @else
                             <div style="width: 100%;height: 250px;display: flex;justify-content: center;align-items: center;">
                                 <div style="width: 150px;">
-                                    <img style="margin: 0 auto;" src="{{asset('Admin/images/icons/free.png')}}" width="150px"/>
+                                    <img style="margin: 0 auto;" src="{{asset('admin-assets/images/icons/free.png')}}" width="150px"/>
                                     @if(((int)$setting->discountall)>100)
                                         <p style="margin: 10px auto;text-align: center;">{{$setting->discountall}} {{__('all_strings.disount_for_all')}}</p>
                                     @else

@@ -72,7 +72,7 @@
                         @else
                             <div style="width: 100%;height: 250px;display: flex;justify-content: center;align-items: center;">
                                 <div style="width: 150px;">
-                                    <img style="margin: 0 auto;" src="{{asset('Admin/images/icons/empty.png')}}" width="150px"/>
+                                    <img style="margin: 0 auto;" src="{{asset('admin-assets/images/icons/empty.png')}}" width="150px"/>
                                     <p style="margin: 10px auto;text-align: center;">{{__('all_strings.notfound')}}</p>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                         @else
                             <div style="width: 100%;height: 250px;display: flex;justify-content: center;align-items: center;">
                                 <div style="width: 150px;">
-                                    <img style="margin: 0 auto;" src="{{asset('Admin/images/icons/empty.png')}}" width="150px"/>
+                                    <img style="margin: 0 auto;" src="{{asset('admin-assets/images/icons/empty.png')}}" width="150px"/>
                                     <p style="margin: 10px auto;text-align: center;">{{__('all_strings.notfound')}}</p>
                                 </div>
                             </div>
@@ -164,8 +164,8 @@
 
 
     <!--Open Street Map Start-->
-    <link rel = "stylesheet" href = "{{asset('Admin/Map/leaflet.css')}}" />
-    <script src = "{{asset('Admin/Map/leaflet.js')}}"></script>
+    <link rel = "stylesheet" href = "{{asset('admin-assets/Map/leaflet.css')}}" />
+    <script src = "{{asset('admin-assets/Map/leaflet.js')}}"></script>
     <script>
 
         var mapOptions = {
