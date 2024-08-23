@@ -18,7 +18,6 @@ use App\Models\view_tbl;
 use App\Models\Visit;
 //use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Category;
 use App\Models\video_tbl;
 use App\Models\report;
