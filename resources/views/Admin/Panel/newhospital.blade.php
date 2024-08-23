@@ -13,11 +13,11 @@
                         <input type="hidden" value="{{csrf_token()}}" name="_token"/>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.HospitalNmae')}}</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.HospitalNmae')}}" name="name">
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.HospitalNmae')}}" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.city_name')}}</label>
-                            <select class="form-control" id="exampleInputUsername1" name="city">
+                            <select class="form-control" id="exampleInputUsername1" name="city" required>
                                 @foreach(App\Models\City::all() as $city)
                                     @if($city->area!="0" && $city->status=="1")
                                         <option value="{{$city->id}}">{{$city->name}}</option>
@@ -27,23 +27,23 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.Address')}}</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.Address')}}" name="address">
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.Address')}}" name="address" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.tel')}}</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.tel')}}" name="tel">
+                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.tel')}}" name="tel" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.start_time')}}</label>
-                            <input type="time" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.start_time')}}" name="start_time">
+                            <input type="time" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.start_time')}}" name="start_time" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.end_time')}}</label>
-                            <input type="time" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.end_time')}}" name="end_time">
+                            <input type="time" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.end_time')}}" name="end_time" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.status')}}</label>
-                            <select class="form-control" name="status">
+                            <select class="form-control" name="status" required>
                                 <option value="1">{{__('all_strings.active')}}</option>
                                 <option value="0">{{__('all_strings.passtive')}}</option>
                             </select>
@@ -51,11 +51,11 @@
 
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.about')}}</label>
-                            <textarea style="height: 150px;" class="form-control" id="exampleInputPassword1" placeholder="{{__('all_strings.about')}}" name="bio"></textarea>
+                            <textarea style="height: 150px;" class="form-control" id="exampleInputPassword1" placeholder="{{__('all_strings.about')}}" name="bio" required></textarea>
                         </div>
 
                         <!--Map Start-->
-                        <input id="location_text_input" type="hidden" name="location" value="0,0">
+                        <input id="location_text_input" type="hidden" name="location" value="0,0" required>
                         <div style="width:100%; height:300px;display: flex;justify-content: center;align-items: center;">
                             <div id ="map" style = "width:100%; height:300px;"></div>
                             <div style="position: absolute;"><i style="color:var(--primary);font-size: 50px;" class="mdi mdi-map-marker"></i></div>
@@ -63,7 +63,7 @@
 
                         <br>
 
-                        <button style="width: 100%;" type="submit" class="btn btn-gradient-primary mr-2">{{__('all_strings.done')}}</button>
+                        <button  type="submit" class="btn btn-gradient-primary mr-2 w-100">{{__('all_strings.done')}}</button>
                     </form>
                 </div>
             </div>
@@ -74,8 +74,8 @@
 
 
 <!--Open Street Map Start-->
-<link rel = "stylesheet" href = "{{asset('Admin/Map/leaflet.css')}}" />
-<script src = "{{asset('Admin/Map/leaflet.js')}}"></script>
+<link rel = "stylesheet" href = "{{asset('admin-assets/Map/leaflet.css')}}" />
+<script src = "{{asset('admin-assets/Map/leaflet.js')}}"></script>
 <script>
 
     var mapOptions = {

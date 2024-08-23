@@ -40,7 +40,7 @@
 
                         <!--Add new start-->
                         <div style="float: right;">
-                            <btn onclick="Open_Link_Dialog(this,'{{url('/Admin/Hospitals/New')}}')" style="cursor: pointer;color:var(--primary)">{{__('all_strings.NewHospitals')}}</btn>
+                            <button onclick="Open_Link_Dialog(this,'{{route('admin.hospitals.new')}}')" class="btn text-primary">{{__('all_strings.NewHospitals')}}</button>
                         </div>
                         <!--Add new end-->
                         <br>
@@ -69,7 +69,7 @@
                                         <td>{{$hospital->start_time}}</td>
                                         <td>{{$hospital->end_time}}</td>
                                         <td><a href="tel:{{$hospital->tel}}"> {{$hospital->tel}}</a></td>
-                                        <td><i onclick="Open_Link_Dialog(this,'{{url('/Admin/Hospitals/Gallery')}}/{{$hospital->id}}')" class="mdi mdi-image" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
+                                        <td><i onclick="Open_Link_Dialog(this,'{{route('admin.hospitals.gallery', $hospital->id)}}')" class="mdi mdi-image" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
 
                                         @if($hospital->status==1)
                                             <td>{{__('all_strings.active')}}</td>

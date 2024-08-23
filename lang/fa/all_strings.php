@@ -21,6 +21,7 @@ return [
     "All Reports"=>"همه گزارش ها",
     "New Report"=>"گزارش جدید",
     "Search"=>"جست و جو",
+    "hospitals"=>"بیمارستان‌ها",
     //Menu End
 
 

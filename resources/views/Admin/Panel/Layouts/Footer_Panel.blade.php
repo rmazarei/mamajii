@@ -1,8 +1,10 @@
 <!-- partial:partials/_footer.html -->
 <footer class="footer">
     <div class="container-fluid clearfix">
+<!--
       <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Reza Farazi</span>
       <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><a href="https://izino.ir/Post/%D8%B1%D8%B6%D8%A7%20%D9%81%D8%B1%D8%A7%D8%B2%DB%8C" target="_blank">Rezafta</a></span>
+        -->
     </div>
   </footer>
   <!-- partial -->
@@ -24,7 +26,7 @@
 
 
     <!--Iframe Dialog Start-->
-{{--
+
 
     <div id="iframe_dialog" style="display: none;">
         <i class="mdi mdi-close" onclick="Close_Ifram_Dialog(this)"></i>
@@ -34,7 +36,7 @@
             </iframe>
         </div>
     </div>
---}}
+
 
     <!--Iframe Dialog End-->
 

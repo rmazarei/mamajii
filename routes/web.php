@@ -28,6 +28,8 @@ Route::get("/about", [\App\Http\Controllers\GeneralController::class, "about"]);
 Route::get("/contact", [\App\Http\Controllers\GeneralController::class, "contact"]);
 Route::get("/articles", [\App\Http\Controllers\GeneralController::class, "articles"]);
 Route::get("/courses", [\App\Http\Controllers\GeneralController::class, "courses"]);
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

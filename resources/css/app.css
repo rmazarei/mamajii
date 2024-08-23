@@ -2,6 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+
 [x-cloak] {
     display: none;
+}
+
+:root{
+    --light-blue-color: #c6dfff;
+    --dark-gray: #636363;
+    --light-gray: #727272;
+    --light-light-gray: #f1f1f1;
+}
+
+@font-face {
+    font-family: 'Yekan';
+    src: url('/fonts/Yekan.eot' );
+    src: url('/fonts/Yekan.eot?#iefix' ) format( 'embedded-opentype' ),
+    url('/fonts/Yekan.woff2' ) format( 'woff2' ),
+    url('/fonts/Yekan.woff' ) format( 'woff' ),
+    url('/fonts/Yekan.ttf' ) format( 'truetype' ),
+    url('/fonts/Yekan.svg#Yekan' ) format( 'svg' );
+    font-weight: normal;
+    font-style: normal;
+}
+html {
+    direction: rtl;
+}
+body {
+    font-family: Yekan, serif;
+    background-color: var(--light-light-gray);
+
+}
+
+header {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 1.25rem 1rem;
+}
+.home-main-slider {
+    min-height: 300px;
+    padding: 1rem;
+    background-color: var(--light-blue-color);
+    border-radius: 15px;
+    margin-top: 15px;
+}
+.home-main-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.home-main-icons a {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    background-color: #2f2d64;
+    margin-top: 2rem;
+    padding: 2rem 1rem;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+footer > div > div {
+    /*border: 1px solid red;*/
+}
+.copy-right {
+    color: var(--light-gray);
 }

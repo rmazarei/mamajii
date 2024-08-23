@@ -12,6 +12,7 @@ use App\Models\Setting;
 use App\Models\store;
 use App\Models\taxi_request_tbl;
 use App\Models\Transcation;
+use App\Models\User;
 use App\Models\UserType;
 use App\Models\view_tbl;
 use App\Models\Visit;
@@ -37,7 +38,7 @@ class AdminController extends Controller
 {
 
     //******************Get Login Function Start
-    function Login()
+    function login()
     {
         //Get Check Session Is Empty Or Fail
         if(Auth::user())
@@ -48,10 +49,12 @@ class AdminController extends Controller
         return view('Admin/Panel/login');
     }
 
-    function Login_To(Request $request)
+    function loginTo(Request $request)
     {
         $password=hash('sha256',$request->password);
-        $user=users_tbl::where('username',$request->username)->where('password',$password)->where('user_type','!=','USER')->where('status','1')->get();
+        $password = password_hash($request->password, PASSWORD_BCRYPT);
+        $user=User::where('username',$request->username)->where('password','$2y$10$yd2OhVyftKdaahzE5orp8Oclkf2eZT/O7Z.xCkRTjP.rF4GbFv2PK')->where('user_type','!=','USER')->where('status','1')->get();
+//        dd($request->username, $password, $user);
         if(count($user)>0)
         {
             if($user[0]->google_auth!="")
@@ -63,7 +66,7 @@ class AdminController extends Controller
             {
                 Auth::login($user[0]);
             }
-            return redirect(url('Admin/Dashboard'));
+            return redirect(url('Admin/dashboard'));
         }
         else
         {
@@ -121,7 +124,7 @@ class AdminController extends Controller
 
 
     //******************Get Login Function Start
-    function Dashboard(Request $request)
+    function dashboard(Request $request)
     {
         return view('Admin/Panel/dashboard');
     }
@@ -282,7 +285,7 @@ class AdminController extends Controller
 
     //******************Categories Function Start
 
-    function Categories(Request $request)
+    function categories(Request $request)
     {
         if(Auth::user()->user_type=="ADMIN")
         {
@@ -1094,14 +1097,14 @@ class AdminController extends Controller
     //**********************Get Hospitals Start
 
     //Get View Hospitals
-    function GetHospitals(Request $request)
+    function getHospitals(Request $request)
     {
         $all_hospitals = Hospital::all();
         return view('Admin/Panel/hospitals')->with('all_hospitals',$all_hospitals);
     }
 
     //Get Search Hospital
-    function GetSearchHospitals(Request $request)
+    function getSearchHospitals(Request $request)
     {
         //$city_id=City::where('name','LIKE','%'.$request.'%')->first();
 
@@ -1110,13 +1113,13 @@ class AdminController extends Controller
     }
 
     //Get Add New Hospitals
-    function NewHospital(Request $request)
+    function newHospital(Request $request)
     {
         return view('Admin/Panel/newhospital');
     }
 
     //Get Add New Hospitals Submit
-    function NewHospitalSubmit(Request $request)
+    function newHospitalSubmit(Request $request)
     {
         $location=explode(",",$request->location);
 
@@ -1138,7 +1141,7 @@ class AdminController extends Controller
 
 
     //Get Galery start
-    function HospitalGallery(Request $request)
+    function hospitalGallery(Request $request)
     {
         $images=HospitalImg::Where('hospital_id',$request->id)->get();
         return view('Admin/Panel/hospital_gallery')->with('images',$images)->with('hospi_id',$request->id);
@@ -1147,7 +1150,7 @@ class AdminController extends Controller
 
 
     //Get Galery start
-    function HospitalGalleryNew(Request $request)
+    function hospitalGalleryNew(Request $request)
     {
         if($request->hasFile('img'))
         {
@@ -1170,7 +1173,7 @@ class AdminController extends Controller
 
 
     //Remove from gallery start
-    function HospitalGalleryRemove(Request $request)
+    function hospitalGalleryRemove(Request $request)
     {
         $images=HospitalImg::Where('hospital_id',$request->hospi_id)->Where('file_id',$request->img_id)->delete();
         return redirect()->back();
@@ -1179,7 +1182,7 @@ class AdminController extends Controller
 
 
     //Get Edit Hospital Start
-    function HospitalEdit(Request $request)
+    function hospitalEdit(Request $request)
     {
         $haspital=Hospital::where('id',$request->id)->first();
         return view('Admin/Panel/edithospital')->with('haspital',$haspital);
@@ -1188,7 +1191,7 @@ class AdminController extends Controller
 
 
     //Get Edit Hospital Submmit Start
-    function HospitalEditSubmit(Request $request)
+    function hospitalEditSubmit(Request $request)
     {
         $location=explode(",",$request->location);
         $new_hospital=Hospital::where('id',$request->id)->first();
