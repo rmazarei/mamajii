@@ -37,6 +37,12 @@ use Illuminate\Support\Facades\Log;
 //Admin Controller Start
 class AdminController extends Controller
 {
+    public function checkAdmin()
+    {
+        if(auth()->user()->user_type != 'admin'){
+            return redirect('/');
+        }
+    }
 
     //******************Get Login Function Start
     function login()
@@ -127,7 +133,7 @@ class AdminController extends Controller
     //******************Get Login Function Start
     function dashboard(Request $request)
     {
-        return view('Admin/Panel/dashboard');
+        return view('Admin.Panel.dashboard');
     }
     //******************Get Login Function End
 
@@ -191,9 +197,9 @@ class AdminController extends Controller
 
     //******************Visite Start
 
-    function Visite(Request $request)
+    function visitsIndex(Request $request)
     {
-        return view('Admin/Panel/allvisites');
+        return view('Admin.Panel.allvisites');
     }
 
     function VisiteSearch(Request $request)
@@ -633,9 +639,9 @@ class AdminController extends Controller
     //**********************Get User Manager Start
 
     //Get Add new user
-    function Get_New_User()
+    function createUser()
     {
-        return view('Admin/Panel/new_user');
+        return view('Admin.Panel.new_user');
     }
 
     function Get_New_User_Done(Request $request)

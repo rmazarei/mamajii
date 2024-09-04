@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\users_tbl;
 use Illuminate\Support\Facades\Auth;
 
-class Admin_Panel_Auth
+class AdminPanelAuthMiddleware
 {
     //Get Check Login TOken From Session Start
     public function handle($request, Closure $next)
     {
-        if(Auth::check())
+        if(Auth::user()->user_type == 'admin')
         {
             return $next($request);
         }
         else
         {
-            return redirect('Admin/Login');
+            return redirect('/');
         }
     }
     //Get Check Login TOken From Session End

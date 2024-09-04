@@ -330,6 +330,12 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.visits.index') }}">
+                            <span class="menu-title">{{__('all_strings.visites')}}</span>
+                            <i class="mdi mdi-application menu-icon"></i>
+                        </a>
+                    </li>
 
 <!--
                     <li class="nav-item">
@@ -354,12 +360,6 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         <a class="nav-link" href="{{url('/Admin/Questions')}}">
                             <span class="menu-title">پرسش پاسخ</span>
                             <i class="mdi mdi-comment-question-outline menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/Visite')}}">
-                            <span class="menu-title">{{__('all_strings.visites')}}</span>
-                            <i class="mdi mdi-application menu-icon"></i>
                         </a>
                     </li>
 

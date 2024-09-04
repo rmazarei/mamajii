@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware){
         $middleware->alias([
-            'Admin_Panel_Auth' => \App\Http\Middleware\Admin_Panel_Auth::class,
+            'AdminPanelAuthMiddleware' => \App\Http\Middleware\AdminPanelAuthMiddleware::class,
         ]);
     })
     ->withMiddleware(function (Middleware $middleware) {
