@@ -111,7 +111,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
 
 
-            @if($user_profiel_data->user_type=="ADMIN")
+            @if($user_profiel_data->user_type=="admin")
                 <ul class="nav">
                     <li class="nav-item nav-profile">
                         <a href="{{url('/Admin/Profile')}}" class="nav-link">
@@ -127,7 +127,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                             </div>
                             <div class="nav-profile-text d-flex flex-column" style="margin-right: 10px;">
                                 <span class="font-weight-bold mb-2">{{$user_profiel_data->username}}</span>
-                                @if($user_profiel_data->user_type=="ADMIN")
+                                @if($user_profiel_data->user_type=="admin")
                                     <span class="text-secondary text-small">{{__('all_strings.Admin')}}</span>
                                 @endif
                             </div>
@@ -158,6 +158,20 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                             <i class="mdi mdi-soundcloud menu-icon"></i>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.users.index')}}">
+                            <span class="menu-title">{{__('all_strings.users')}}</span>
+                            <i class="mdi mdi-soundcloud menu-icon"></i>
+                        </a>
+                    </li>
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.users.index')}}?midwives=1">
+                            <span class="menu-title">{{__('all_strings.doctors')}}</span>
+                            <i class="mdi mdi-soundcloud menu-icon"></i>
+                        </a>
+                    </li>
+                    -->
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                            aria-controls="ui-basic">

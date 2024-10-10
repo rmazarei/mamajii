@@ -9,43 +9,43 @@
                 <div class="card-body">
                     <h4 class="card-title" style="text-align: center;">{{__('all_strings.editusers')}}</h4>
                     <p class="card-description" style="text-align: center;">{{__('all_strings.PleaseFillUnderTextFeilds')}}</p>
-                    <form enctype="multipart/form-data" class="forms-sample" method="post" action="{{url('/Admin/User/New/Done')}}">
+                    <form enctype="multipart/form-data" class="forms-sample" method="post" action="{{ route('admin.users.create.done')}}">
                         <input type="hidden" value="{{csrf_token()}}" name="_token"/>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">{{__('all_strings.username')}}</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.username')}}" name="username" required>
+                            <label for="username">{{__('all_strings.username')}}</label>
+                            <input type="text" class="form-control" id="username" placeholder="{{__('all_strings.username')}}" name="username" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">{{__('all_strings.name')}}</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.name')}}" name="name" required>
+                            <label for="name">{{__('all_strings.name')}}</label>
+                            <input type="text" class="form-control" id="name" placeholder="{{__('all_strings.name')}}" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">{{__('all_strings.family')}}</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{__('all_strings.family')}}" name="family" required>
+                            <label for="family">{{__('all_strings.family')}}</label>
+                            <input type="text" class="form-control" id="family" placeholder="{{__('all_strings.family')}}" name="family" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{__('all_strings.newpassword')}}</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="{{__('all_strings.newpassword')}}" name="password" required>
+                            <label for="password">{{__('all_strings.newpassword')}}</label>
+                            <input type="password" class="form-control" id="password" placeholder="{{__('all_strings.newpassword')}}" name="password" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{__('all_strings.email')}}</label>
-                            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="{{__('all_strings.email')}}" name="email" required>
+                            <label for="email">{{__('all_strings.email')}}</label>
+                            <input type="email" class="form-control" id="email" placeholder="{{__('all_strings.email')}}" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{__('all_strings.profile_image')}}</label>
-                            <input type="file" class="form-control" id="exampleInputPassword1" name="profile_image" required>
+                            <label for="profile_image">{{__('all_strings.profile_image')}}</label>
+                            <input type="file" class="form-control" id="profile_image" name="profile_image">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{__('all_strings.phone')}}</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="{{__('all_strings.phone')}}" name="phone" required>
+                            <label for="phone">{{__('all_strings.phone')}}</label>
+                            <input type="text" class="form-control" id="phone" placeholder="{{__('all_strings.phone')}}" name="phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{__('all_strings.address')}}</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="{{__('all_strings.address')}}" name="address" required>
+                            <label for="address">{{__('all_strings.address')}}</label>
+                            <input type="text" class="form-control" id="address" placeholder="{{__('all_strings.address')}}" name="address" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{__('all_strings.bio')}}</label>
-                            <textarea style="height: 150px;" class="form-control" id="exampleInputPassword1" placeholder="{{__('all_strings.bio')}}" name="bio" required></textarea>
+                            <label for="exampleInputPasswbioord1">{{__('all_strings.bio')}}</label>
+                            <textarea style="height: 150px;" class="form-control" id="bio" placeholder="{{__('all_strings.bio')}}" name="bio"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.city_name')}}</label>

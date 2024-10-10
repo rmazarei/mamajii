@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h4 class="card-title" style="text-align: center;">{{__('all_strings.editusers')}}</h4>
                     <p class="card-description" style="text-align: center;">{{__('all_strings.PleaseFillUnderTextFeilds')}}</p>
-                    <form enctype="multipart/form-data" class="forms-sample" method="post" action="{{url('/Admin/UserManager/Times/Done')}}">
+                    <form enctype="multipart/form-data" class="forms-sample" method="post" action="{{route('admin.users.times.store', $user->id)}}">
                         <input type="hidden" value="{{$user->id}}" name="user_id"/>
                         <input type="hidden" value="{{csrf_token()}}" name="_token"/>
 

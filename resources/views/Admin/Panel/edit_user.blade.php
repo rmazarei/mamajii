@@ -12,23 +12,23 @@
                        style="text-align: center;">{{__('all_strings.PleaseFillUnderTextFeilds')}}</p>
                     <form enctype="multipart/form-data" class="forms-sample" method="post"
                           action="{{url('/Admin/UserManager/Edit_User_Submit')}}">
-                        <input type="hidden" value="{{$User->id}}" name="user_id"/>
+                        <input type="hidden" value="{{$user->id}}" name="user_id"/>
                         <input type="hidden" value="{{csrf_token()}}" name="_token"/>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.username')}}</label>
                             <input type="text" class="form-control" id="exampleInputUsername1"
                                    placeholder="{{__('all_strings.username')}}" name="username"
-                                   value="{{$User->username}}">
+                                   value="{{$user->username}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.name')}}</label>
                             <input type="text" class="form-control" id="exampleInputUsername1"
-                                   placeholder="{{__('all_strings.name')}}" name="name" value="{{$User->name}}">
+                                   placeholder="{{__('all_strings.name')}}" name="name" value="{{$user->name}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.family')}}</label>
                             <input type="text" class="form-control" id="exampleInputUsername1"
-                                   placeholder="{{__('all_strings.family')}}" name="family" value="{{$User->family}}">
+                                   placeholder="{{__('all_strings.family')}}" name="family" value="{{$user->family}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.newpassword')}}</label>
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.email')}}</label>
                             <input type="email" class="form-control" id="exampleInputPassword1"
-                                   placeholder="{{__('all_strings.email')}}" name="email" value="{{$User->email}}">
+                                   placeholder="{{__('all_strings.email')}}" name="email" value="{{$user->email}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.profile_image')}}</label>
@@ -47,25 +47,25 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.phone')}}</label>
                             <input type="text" class="form-control" id="exampleInputPassword1"
-                                   placeholder="{{__('all_strings.phone')}}" name="phone" value="{{$User->phone}}">
+                                   placeholder="{{__('all_strings.phone')}}" name="phone" value="{{$user->phone}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.address')}}</label>
                             <input type="text" class="form-control" id="exampleInputPassword1"
                                    placeholder="{{__('all_strings.address')}}" name="address"
-                                   value="{{$User->address}}">
+                                   value="{{$user->address}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.bio')}}</label>
                             <textarea style="height: 150px;" class="form-control" id="exampleInputPassword1"
-                                      placeholder="{{__('all_strings.bio')}}" name="bio">{{$User->bio}}</textarea>
+                                      placeholder="{{__('all_strings.bio')}}" name="bio">{{$user->bio}}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.city_name')}}</label>
                             <select class="form-control" id="exampleInputUsername1" name="city">
                                 @foreach(App\Models\City::all() as $city)
                                     @if($city->area!="" && $city->area!="0" && $city->status=="1")
-                                        @if($city->id == $User->city_id )
+                                        @if($city->id == $user->city_id )
                                             <option selected value="{{$city->id}}">{{$city->name}}</option>
                                         @else
                                             <option value="{{$city->id}}">{{$city->name}}</option>
@@ -77,13 +77,13 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.status')}}</label>
                             <select class="form-control" name="status">
-                                @if($User->status=="1")
+                                @if($user->status=="1")
                                     <option value="1" selected>{{__('all_strings.active')}}</option>
                                 @else
                                     <option value="1">{{__('all_strings.active')}}</option>
                                 @endif
 
-                                @if($User->status=="0")
+                                @if($user->status=="0")
                                     <option value="0" selected>{{__('all_strings.passtive')}}</option>
                                 @else
                                     <option value="0">{{__('all_strings.passtive')}}</option>
@@ -93,14 +93,14 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.usertype')}}</label>
                             <select class="form-control" name="user_type">
-                                @if($User->user_type=="ADMIN")
+                                @if($user->user_type=="ADMIN")
                                     <option value="ADMIN" selected>{{__('all_strings.admin')}}</option>
                                 @else
                                     <option value="ADMIN">{{__('all_strings.admin')}}</option>
                                 @endif
 
-                                @foreach(\App\Models\userType::all() as $user_type)
-                                    @if($User->user_type==$user_type->en_title)
+                                @foreach($userTypes as $user_type)
+                                    @if($user->user_type==$user_type->en_title)
                                         <option value="{{$user_type->en_title}}" selected>{{$user_type->title}}</option>
                                     @else
                                         <option value="{{$user_type->en_title}}">{{$user_type->title}}</option>
@@ -125,10 +125,10 @@
 
                             var mapOptions = {
 
-                                @if($User->lat=="")
+                                @if($user->lat=="")
                                 center: [35.7406991, 51.4192106],
                                 @else
-                                center: [{{$User->lat}}, {{$User->lng}}],
+                                center: [{{$user->lat}}, {{$user->lng}}],
                                 @endif
 
                                 zoom: 14

@@ -14,7 +14,8 @@ $user_profiel_data=\Illuminate\Support\Facades\Auth::user();
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-account-multiple "></i>
-                </span></span>{{__('all_strings.User Managment')}}
+                </span>
+                {{__('all_strings.UserManagement')}}
             </h3>
         </div>
 
@@ -44,8 +45,11 @@ $user_profiel_data=\Illuminate\Support\Facades\Auth::user();
                     <div class="card-body">
 
                         <!--Add new start-->
-                        <div style="float: right;">
-                            <btn onclick="Open_Link_Dialog(this,'{{url('/Admin/User/New')}}')" style="cursor: pointer;color:var(--primary)">{{__('all_strings.NewUser')}}</btn>
+                        <div>
+                            <button onclick="Open_Link_Dialog(this,'{{ route('admin.users.create') }}')" class="float-right btn btn-primary">
+                                {{__('all_strings.NewUser')}}
+                            </button>
+                            <a href="{{ route('admin.users.index') }}?midwives=1" class="float-left">ماماها</a>
                         </div>
                         <!--Add new end-->
                         <br>
@@ -71,7 +75,7 @@ $user_profiel_data=\Illuminate\Support\Facades\Auth::user();
                             <tbody>
 
                             {{--Get Fetch All Categories Form DataBase Start--}}
-                            @foreach(\App\Models\User::all() as $user)
+                            @foreach($users as $user)
                                 @if($user->id!=$user_profiel_data->id)
                                     <tr>
                                         <td>{{$user->username}}</td>
@@ -85,20 +89,24 @@ $user_profiel_data=\Illuminate\Support\Facades\Auth::user();
                                         @endif
 
 
-                                        @if($user->user_type=="ADMIN")
+                                        @if($user->user_type=="admin")
                                             <td>Admin</td>
-                                        @elseif($user->user_type=="ADMIN_Web")
-                                            <td>Admin Reports</td>
-                                        @elseif($user->user_type=="USER")
-                                            <td>User</td>
+                                        @elseif($user->user_type=="midwife")
+                                            <td>ماما</td>
+                                        @elseif($user->user_type=="user")
+                                            <td>کاربر</td>
                                         @else
-                                            <td>By Api</td>
+                                            <td>-</td>
                                         @endif
 
                                         <td><i onclick="Open_Link_Dialog(this,'{{url('/Admin/UserManager/Get_Notification/')}}/{{$user->id}}')" class="mdi mdi-comment" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
                                         <td><i onclick="Open_Link_Dialog(this,'{{url('/Admin/UserManager/Send_Notification')}}/{{$user->id}}')" class="mdi mdi-comment" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
-                                        <td><i onclick="Open_Link_Dialog(this,'{{url('/Admin/UserManager/Times')}}/{{$user->id}}')" class="mdi mdi-timer" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
-                                        <td><i onclick="Open_Link_Dialog(this,'{{url('/Admin/UserManager/Edit_User')}}/{{$user->id}}')" class="mdi mdi-table-edit" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
+                                        <td>
+                                            @if($user->user_type== "midwife")
+                                            <i onclick="Open_Link_Dialog(this,'{{ route('admin.users.times',$user->id) }}')" class="mdi mdi-timer" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i>
+                                            @endif
+                                        </td>
+                                        <td><i onclick="Open_Link_Dialog(this,'{{ route('admin.users.edit',$user->id) }}')" class="mdi mdi-table-edit" style="font-size: 20px;color:var(--primary);cursor: pointer;"></i></td>
                                     </tr>
                                 @endif
                             @endforeach

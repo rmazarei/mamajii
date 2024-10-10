@@ -176,7 +176,7 @@ class AdminController extends Controller
     //******************Done Function Start
     function Done()
     {
-        return view('Admin/Panel/done');
+        return view('Admin.Panel.done');
     }
     //******************Done Function End
 
@@ -644,7 +644,7 @@ class AdminController extends Controller
         return view('Admin.Panel.new_user');
     }
 
-    function Get_New_User_Done(Request $request)
+    function getNewUserDone(Request $request)
     {
         $profile_image_id=0;
         if($request->hasFile('profile_image'))
@@ -664,7 +664,7 @@ class AdminController extends Controller
         $user->email=$request->email;
         $user->phone=$request->phone;
         $user->status=$request->status;
-        $user->date_time=date('Y-m-d h:i:sa');
+//        $user->date_time=date('Y-m-d h:i:sa');
         $user->website="";
         $user->times="";
         $user->google_auth="";
@@ -676,8 +676,8 @@ class AdminController extends Controller
         $user->lat=$location[0];
         $user->lng=$location[1];
         $user->phone=$request->phone;
-        $user->b_date="";
-        $user->sex="man";
+//        $user->b_date="";
+//        $user->sex="man";
         $user->email = $request->email;
         $user->user_type=$request->user_type;
         $user->password=hash("sha256",$request->password);
@@ -690,13 +690,13 @@ class AdminController extends Controller
         $user->save();
 
 
-        return view('Admin/Panel/done');
+        return view('Admin.Panel.done');
     }
 
     //Get User times
-    function Get_User_Times(Request $request)
+    function getUserTimes(Request $request, User $user)
     {
-        $user=User::where('id',$request->user_id)->first();
+//        $user=User::where('id',$request->user_id)->first();
 
         if($user->times!="")
         {
@@ -772,8 +772,8 @@ class AdminController extends Controller
             ->with('start_6',$start_6)->with('end_6',$end_6)->with('fri',$fri);
     }
 
-    //Get User times done
-    function User_Times_Done(Request $request)
+    //Get User times done: "store" in routes
+    function userTimesDone(Request $request)
     {
 
         $tms=array(
@@ -787,13 +787,13 @@ class AdminController extends Controller
         );
 
         User::where('id',$request->user_id)->update(array("times"=>json_encode($tms)));
-        return view('Admin/Panel/done');
+        return view('Admin.Panel.done');
     }
 
     //Get User Manager
-    function Get_User_Manager()
+    function getUserManager()
     {
-        return view('Admin/Panel/usermanager');
+        return view('Admin.Panel.usermanager');
     }
 
     //Get Send Notification To User
@@ -960,7 +960,7 @@ class AdminController extends Controller
     function Groups(Request $request)
     {
         $allgroups=\App\Models\UserType::all();
-        return view('Admin/Panel/groups')->with('allgroups',$allgroups);
+        return view('Admin.Panel.groups')->with('allgroups',$allgroups);
     }
 
     //Get Add New Group
