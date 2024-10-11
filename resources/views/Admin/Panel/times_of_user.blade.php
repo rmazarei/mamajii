@@ -210,7 +210,15 @@
                                     </div>
                                 </td>
                             </tr>
-
+                            <tr>
+                                <td colspan="3">
+                                    <label for="hours">
+                                        ساعات مورد نظر
+                                        <span class="text-sm text-muted">(در هر سطر یک ساعت)</span>
+                                    </label>
+                                    <textarea rows="8" name="hours" id="hours" class="form-control"></textarea>
+                                </td>
+                            </tr>
 
                         </table>
 

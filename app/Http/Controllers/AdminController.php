@@ -787,6 +787,10 @@ class AdminController extends Controller
         );
 
         User::where('id',$request->user_id)->update(array("times"=>json_encode($tms)));
+        $hours = explode("\r\n", $request->hours);
+        sort($hours);
+        dd($hours);
+
         return view('Admin.Panel.done');
     }
 

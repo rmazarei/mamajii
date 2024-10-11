@@ -114,6 +114,7 @@ $user_profiel_data=\Illuminate\Support\Facades\Auth::user();
 
                             </tbody>
                         </table>
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>
