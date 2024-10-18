@@ -8,28 +8,35 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title" style="text-align: center;">{{__('all_strings.editusers')}}</h4>
-                    <p class="card-description" style="text-align: center;">{{__('all_strings.PleaseFillUnderTextFeilds')}}</p>
-                    <form enctype="multipart/form-data" class="forms-sample" method="post" action="{{ route('admin.users.create.done')}}">
+                    <p class="card-description"
+                       style="text-align: center;">{{__('all_strings.PleaseFillUnderTextFeilds')}}</p>
+                    <form enctype="multipart/form-data" class="forms-sample" method="post"
+                          action="/admin/users">
                         <input type="hidden" value="{{csrf_token()}}" name="_token"/>
                         <div class="form-group">
                             <label for="username">{{__('all_strings.username')}}</label>
-                            <input type="text" class="form-control" id="username" placeholder="{{__('all_strings.username')}}" name="username" required>
+                            <input type="text" class="form-control" id="username"
+                                   placeholder="{{__('all_strings.username')}}" name="username" required>
                         </div>
                         <div class="form-group">
                             <label for="name">{{__('all_strings.name')}}</label>
-                            <input type="text" class="form-control" id="name" placeholder="{{__('all_strings.name')}}" name="name" required>
+                            <input type="text" class="form-control" id="name" placeholder="{{__('all_strings.name')}}"
+                                   name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="family">{{__('all_strings.family')}}</label>
-                            <input type="text" class="form-control" id="family" placeholder="{{__('all_strings.family')}}" name="family" required>
+                            <input type="text" class="form-control" id="family"
+                                   placeholder="{{__('all_strings.family')}}" name="family" required>
                         </div>
                         <div class="form-group">
                             <label for="password">{{__('all_strings.newpassword')}}</label>
-                            <input type="password" class="form-control" id="password" placeholder="{{__('all_strings.newpassword')}}" name="password" required>
+                            <input type="password" class="form-control" id="password"
+                                   placeholder="{{__('all_strings.newpassword')}}" name="password" required>
                         </div>
                         <div class="form-group">
                             <label for="email">{{__('all_strings.email')}}</label>
-                            <input type="email" class="form-control" id="email" placeholder="{{__('all_strings.email')}}" name="email" required>
+                            <input type="email" class="form-control" id="email"
+                                   placeholder="{{__('all_strings.email')}}" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="profile_image">{{__('all_strings.profile_image')}}</label>
@@ -37,15 +44,18 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">{{__('all_strings.phone')}}</label>
-                            <input type="text" class="form-control" id="phone" placeholder="{{__('all_strings.phone')}}" name="phone" required>
+                            <input type="text" class="form-control" id="phone" placeholder="{{__('all_strings.phone')}}"
+                                   name="phone" required>
                         </div>
                         <div class="form-group">
                             <label for="address">{{__('all_strings.address')}}</label>
-                            <input type="text" class="form-control" id="address" placeholder="{{__('all_strings.address')}}" name="address" required>
+                            <input type="text" class="form-control" id="address"
+                                   placeholder="{{__('all_strings.address')}}" name="address" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPasswbioord1">{{__('all_strings.bio')}}</label>
-                            <textarea style="height: 150px;" class="form-control" id="bio" placeholder="{{__('all_strings.bio')}}" name="bio"></textarea>
+                            <textarea style="height: 150px;" class="form-control" id="bio"
+                                      placeholder="{{__('all_strings.bio')}}" name="bio"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">{{__('all_strings.city_name')}}</label>
@@ -77,14 +87,16 @@
                         <!--Open Street Map Start-->
                         <!--Map Start-->
                         <input id="location_text_input" type="hidden" name="location" value="0,0">
-                        <div style="width:100%; height:300px;display: flex;justify-content: center;align-items: center;">
-                            <div id ="map" style = "width:100%; height:300px;"></div>
-                            <div style="position: absolute;"><i style="color:var(--primary);font-size: 50px;" class="mdi mdi-map-marker"></i></div>
+                        <div
+                            style="width:100%; height:300px;display: flex;justify-content: center;align-items: center;">
+                            <div id="map" style="width:100%; height:300px;"></div>
+                            <div style="position: absolute;"><i style="color:var(--primary);font-size: 50px;"
+                                                                class="mdi mdi-map-marker"></i></div>
                         </div>
 
 
-                        <link rel = "stylesheet" href = "{{asset('admin-assets/Map/leaflet.css')}}" />
-                        <script src = "{{asset('admin-assets/Map/leaflet.js')}}"></script>
+                        <link rel="stylesheet" href="{{asset('admin-assets/Map/leaflet.css')}}"/>
+                        <script src="{{asset('admin-assets/Map/leaflet.js')}}"></script>
                         <script>
 
                             var mapOptions = {
@@ -96,13 +108,13 @@
                             var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
                             map.addLayer(layer);
 
-                            function onMoveEnd(e){
+                            function onMoveEnd(e) {
                                 console.log(map.getCenter());
                                 console.log(map.getCenter().lat);
                                 console.log(map.getCenter().lng);
 
-                                var location_text_input=window.document.getElementById("location_text_input");
-                                location_text_input.value=map.getCenter().lat+","+map.getCenter().lng;
+                                var location_text_input = window.document.getElementById("location_text_input");
+                                location_text_input.value = map.getCenter().lat + "," + map.getCenter().lng;
                             }
 
                             map.on('moveend', onMoveEnd);
@@ -110,7 +122,8 @@
                         </script>
                         <!--Open Street Map End-->
 
-                        <button style="width: 100%;" type="submit" class="btn btn-gradient-primary mr-2">{{__('all_strings.done')}}</button>
+                        <button style="width: 100%;" type="submit"
+                                class="btn btn-gradient-primary mr-2">{{__('all_strings.done')}}</button>
                     </form>
                 </div>
             </div>

@@ -30,6 +30,7 @@ Route::get("/articles", [\App\Http\Controllers\GeneralController::class, "articl
 Route::get("/courses", [\App\Http\Controllers\GeneralController::class, "courses"]);
 
 Route::get('hospitals/{hospital}', [\App\Http\Controllers\HospitalController::class, "show"])->name('hopitals.show');
+Route::get('/doctors/{user}', [\App\Http\Controllers\UserController::class, "showDoctor"]);
 
 Route::middleware([
     'auth:sanctum',
