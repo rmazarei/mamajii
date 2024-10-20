@@ -6,15 +6,22 @@ import {onMounted, ref} from "vue";
 
 
 const hospitals = ref([])
+const doctors = ref([])
 
 const fetchAllHospitals = () => {
     axios.get('/api/V1/Client/Hospitals').then(response => {
         hospitals.value = response.data
     })
 }
+const fetchAllDoctors = ()=> {
+    axios.get('/api/V1/Client/Doctors?city=تهران').then(response => {
+        doctors.value = response.data
+    })
+}
 
 onMounted(() => {
     fetchAllHospitals()
+    fetchAllDoctors()
 })
 
 </script>
@@ -54,6 +61,20 @@ onMounted(() => {
                     <img :alt="hospital.name" src="/images/hospital.png">
                     <h3 class="hospital-title">{{ hospital.name }}</h3>
                     <Link :href="route('hopitals.show', hospital.id)" class="more-info">اطلاعات بیشتر</Link>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 mb-2 text-2xl font-bold">
+            <h4>ماماجی‌ها</h4>
+        </div>
+        <div class="home-main-doctors">
+            <div class="home-doctors flex">
+                <div v-for="doctor in doctors" class="rounded-[10px] bg-gray-200">
+                    <div class="home-doctors-image-wrapper">
+                        <img src="/images/hospital.png" alt="hospital.name" class="home-doctors-image">
+                    </div>
+                    <h3 class="doctor-title">{{  doctor.name }} {{  doctor.family }}</h3>
+                    <Link href="route('hopitals.show', hospital.id)" class="more-info">اطلاعات بیشتر</Link>
                 </div>
             </div>
         </div>

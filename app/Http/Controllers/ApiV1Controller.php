@@ -162,7 +162,7 @@ class ApiV1Controller extends Controller
     function GetCityAllDoctors(Request $request)
     {
         $city=City::where('name',$request->city)->where('area','!=',0)->where('status','1')->first();
-        $doctors=User::join('Files','Users.profile_image_file_id','=','Files.id')->join('UserType','Users.user_type','=','UserType.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('city_id',$city->id)->where('status','1')->get();
+        $doctors=User::join('files','users.profile_image_file_id','=','files.id')->join('user_types','users.user_type','=','user_types.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('city_id',$city->id)->where('status','1')->get();
 
         $reponse=array();
         foreach ($doctors as $doctor)
@@ -190,7 +190,7 @@ class ApiV1Controller extends Controller
     //Get All doctor by city start
     function GetSearchDoctor(Request $request)
     {
-        $doctors=User::join('Files','Users.profile_image_file_id','=','Files.id')->join('UserType','Users.user_type','=','UserType.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('status','1')->where('name','LIKE','%'.$request->search.'%')->orwhere('family','LIKE','%'.$request->search.'%')->get();
+        $doctors=User::join('files','users.profile_image_file_id','=','files.id')->join('user_types','users.user_type','=','user_types.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('status','1')->where('name','LIKE','%'.$request->search.'%')->orwhere('family','LIKE','%'.$request->search.'%')->get();
 
         $reponse=array();
         foreach ($doctors as $doctor)
@@ -247,7 +247,7 @@ class ApiV1Controller extends Controller
     function GetCityAllHospitals(Request $request)
     {
         $city=City::where('name',$request->city)->where('area','!=',0)->where('status','1')->first();
-        $hospitals=Hospital::join('hospital_img_tbls','Hospital.id','=','hospital_img_tbls.hospital_id')->join('Files','hospital_img_tbls.file_id','=','Files.id')->where('status','1')->where('city_id',$city->id)->get();
+        $hospitals=Hospital::join('hospital_img_tbls','Hospital.id','=','hospital_img_tbls.hospital_id')->join('files','hospital_img_tbls.file_id','=','files.id')->where('status','1')->where('city_id',$city->id)->get();
 
         $reponse=array();
         foreach ($hospitals as $hospital)
@@ -390,7 +390,7 @@ class ApiV1Controller extends Controller
 
 
     //Get all categories and sounds free start
-    function GetAllFreeSoundUsers(Request $request)
+    function GetAllFreeSoundusers(Request $request)
     {
         $result=array();
         $all_categories=Category::where('visible','1')->where('delete_flag','0')->where('price','0')->get();
@@ -447,14 +447,14 @@ class ApiV1Controller extends Controller
     //Get all sound post by category start
     function GetAllSoundsPostByCategory(Request $request)
     {
-        $post=post::join('Files','Post.file_id','=','Files.id')->where('category_id',$request->category_id)->where('visible','1')->where('delete_flag','0')->where('type','SOUND')->get();
+        $post=post::join('files','Post.file_id','=','files.id')->where('category_id',$request->category_id)->where('visible','1')->where('delete_flag','0')->where('type','SOUND')->get();
         return $post;
     }
     //Get all sound post by category end
 
 
     //Get all categories and sounds free start
-    function GetAllPackageSoundUsers(Request $request)
+    function GetAllPackageSoundusers(Request $request)
     {
         $result=array();
         $all_categories=Category::where('visible','1')->where('delete_flag','0')->where('price','!=','0')->get();

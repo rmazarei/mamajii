@@ -10,6 +10,7 @@ Route::post("/V1/Client/Login",[\App\Http\Controllers\ApiV1Controller::class,'Lo
 Route::post("/V1/Client/Verify",[\App\Http\Controllers\ApiV1Controller::class,'Verify']);
 Route::post("/V1/Client/Logout",[\App\Http\Controllers\ApiV1Controller::class,'Logout']);
 Route::get("/V1/Client/Hospitals",[\App\Http\Controllers\ApiV1Controller::class,'AllHospitals']);
+Route::get("/V1/Client/Doctors",[\App\Http\Controllers\ApiV1Controller::class,'GetCityAllDoctors']);
 
 Route::get("/V1/Client/StoreCategories",[\App\Http\Controllers\StoreApiController::class,'StoreCetegories']);
 Route::get("/V1/Client/StoreCategories/{cat_id}",[\App\Http\Controllers\StoreApiController::class,'StorePostsByCategories']);

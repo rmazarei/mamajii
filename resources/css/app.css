@@ -67,7 +67,12 @@ header {
     background-color: #FFF;
     display: flex;
     flex-flow: column;
-
+}
+.home-doctors > div {
+    background-color: #DDD;
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
 }
 .home-hospitals > div .hospital-title {
     margin: 0 1rem;
@@ -90,6 +95,13 @@ header {
     color: #3b82f6;
 }
 
+
+.home-doctors-image-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
 
 
 footer {
