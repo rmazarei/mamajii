@@ -60,7 +60,7 @@ onMounted(() => {
                 <div v-for="hospital in hospitals">
                     <img :alt="hospital.name" src="/images/hospital.png">
                     <h3 class="hospital-title">{{ hospital.name }}</h3>
-                    <Link :href="route('hopitals.show', hospital.id)" class="more-info">اطلاعات بیشتر</Link>
+                    <Link :href="route('hospitals.show', hospital.id)" class="more-info">اطلاعات بیشتر</Link>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@ onMounted(() => {
                         <img src="/images/hospital.png" alt="hospital.name" class="home-doctors-image">
                     </div>
                     <h3 class="doctor-title">{{  doctor.name }} {{  doctor.family }}</h3>
-                    <Link href="route('hopitals.show', hospital.id)" class="more-info">اطلاعات بیشتر</Link>
+                    <Link :href="route('doctors.show', doctor.id)" class="more-info">اطلاعات بیشتر</Link>
                 </div>
             </div>
         </div>
