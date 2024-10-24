@@ -611,7 +611,9 @@ class AdminController extends Controller
 
     function createUser()
     {
-        return view('Admin.Panel.new_user');
+        $hospitals = Hospital::all();
+        $userTypes = UserType::all();
+        return view('Admin.Panel.new_user', compact('hospitals', 'userTypes'));
     }
 
     //Get User times
@@ -620,11 +622,24 @@ class AdminController extends Controller
     {
 //        dd($request->all());
 
+        /*
         $validation = $request->validate([
-            'email' => 'unique:users,email'
+            'email' => 'unique:users,email',
+            'hospital' => 'requiredIf:user_type,midwife'
         ]);
+        */
 
 //        dd($validation);
+
+        $checkMobile = User::where('phone', $request->phone)->orWhere('email', $request->email)->first();
+
+        if($checkMobile){
+
+            return view('Admin.Panel.notDone', ['message'=> 'شماره موبایل یا ایمیل تکراری است']);
+            return redirect()->back()->with('message', 'شماره موبایل یا ایمیل تکراری است');
+        }
+
+
 
         $profile_image_id = 0;
         if ($request->hasFile('profile_image')) {
@@ -661,7 +676,9 @@ class AdminController extends Controller
         $user->user_type = $request->user_type;
         $user->password = hash("sha256", $request->password);
         $user->login_token = hash("sha256", $request->password."-".$request->username);
-
+        if($request->user_type == 'midwife'){
+            $user->hospital_id = $request->hospital;
+        }
         if ($profile_image_id != 0) {
             $user->profile_image_file_id = $profile_image_id;
         }
@@ -680,7 +697,7 @@ class AdminController extends Controller
 //        $user=User::where('id',$request->user_id)->first();
 
         if ($user->times != "") {
-            $times = json_decode($user->times);
+            $times = $user->times;
 
             $start_0 = $times->start_0;
             $end_0 = $times->end_0;
@@ -766,9 +783,11 @@ class AdminController extends Controller
         );
 
         User::where('id', $request->user_id)->update(array("times" => json_encode($tms)));
+        /*
         $hours = explode("\r\n", $request->hours);
         sort($hours);
         dd($hours);
+        */
 
         return view('Admin.Panel.done');
     }

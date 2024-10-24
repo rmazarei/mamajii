@@ -32,6 +32,9 @@ Route::get("/courses", [\App\Http\Controllers\GeneralController::class, "courses
 Route::get('hospitals/{hospital}', [\App\Http\Controllers\HospitalController::class, "show"])->name('hospitals.show');
 Route::get('/doctors/{user}', [\App\Http\Controllers\UserController::class, "showDoctor"])->name('doctors.show');
 
+// Booking
+Route::get('booking/{user}', [\App\Http\Controllers\BookingController::class, 'stepOne'])->name('booking.one');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

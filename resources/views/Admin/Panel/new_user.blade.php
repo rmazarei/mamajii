@@ -77,9 +77,19 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">{{__('all_strings.usertype')}}</label>
                             <select class="form-control" name="user_type" required>
-                                <option value="ADMIN">{{__('all_strings.admin')}}</option>
-                                @foreach(\App\Models\UserType::all() as $user_type)
+                                @foreach($userTypes as $user_type)
                                     <option value="{{$user_type->en_title}}">{{$user_type->title}}</option>
+                                @endforeach
+                                <option value="ADMIN">{{__('all_strings.admin')}}</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">{{__('all_strings.hospitals')}}</label>
+                            <select class="form-control" name="hospital">
+                                <option value="">انتخاب کنید</option>
+                                @foreach($hospitals as $hospital)
+                                    <option value="{{$hospital->id}}">{{$hospital->name}}</option>
                                 @endforeach
 
                             </select>

@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@chenfengyuan/vue-carousel": "^2.0.0",
+        "jalali-moment": "^3.3.11",
         "swiper": "^11.1.9"
     }
 }

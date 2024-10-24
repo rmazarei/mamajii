@@ -68,7 +68,7 @@ onMounted(() => {
             <h4>ماماجی‌ها</h4>
         </div>
         <div class="home-main-doctors">
-            <div class="home-doctors flex">
+            <div class="home-doctors flex gap-4">
                 <div v-for="doctor in doctors" class="rounded-[10px] bg-gray-200">
                     <div class="home-doctors-image-wrapper">
                         <img src="/images/hospital.png" alt="hospital.name" class="home-doctors-image">

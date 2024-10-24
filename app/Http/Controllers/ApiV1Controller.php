@@ -162,7 +162,8 @@ class ApiV1Controller extends Controller
     function GetCityAllDoctors(Request $request)
     {
         $city=City::where('name',$request->city)->where('area','!=',0)->where('status','1')->first();
-        $doctors=User::join('files','users.profile_image_file_id','=','files.id')->join('user_types','users.user_type','=','user_types.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('city_id',$city->id)->where('status','1')->get();
+        // $doctors=User::join('files','users.profile_image_file_id','=','files.id')->join('user_types','users.user_type','=','user_types.en_title')->where('user_type','!=','USER')->where('user_type','!=','ADMIN')->where('city_id',$city->id)->where('status','1')->get();
+        $doctors=User::where('user_type', 'midwife')->where('city_id',$city->id)->where('status','1')->get();
 
         $reponse=array();
         foreach ($doctors as $doctor)

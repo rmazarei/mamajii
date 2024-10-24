@@ -1,10 +1,15 @@
 <script setup>
 
 import AppLayout from "@/Layouts/AppLayout.vue";
+import moment from "jalali-moment";
+import {Link} from "@inertiajs/vue3";
 
 const props = defineProps({doctor: Object})
 
 const doctorTimes = props.doctor.times
+
+const m = moment(new Date(), 'YYYY/M/D')
+m.locale('fa')
 
 const weekDays = {
     'sat': 'شنبه',
@@ -33,21 +38,24 @@ const startEnds = {
         <h1 class="my-2 text-center text-2xl font-bold text-blue-500">
             {{ doctor.name }} {{ doctor.family }}
         </h1>
-
+        <div>
+            <Link :href="route('booking.one', doctor.id)">دریافت نوبت</Link>
+        </div>
         <div class="grid grid-cols-8 gap-4">
             <div
                 class="hospital-info col-span-8 md:col-span-4 lg:col-span-2 border rounded p-2 bg-white rounded-lg shadow-lg">
 
-
-                <p v-for="(index, weekDay) in weekDays">
-                    <template v-if="doctorTimes[weekDay] === 'on'">
-                        {{ index }}:
-                        از
-                        {{ doctorTimes['start_' + startEnds[weekDay]] }}
-                        تا
-                        {{ doctorTimes['end_' + startEnds[weekDay]] }}
-                    </template>
-                </p>
+                <template v-if="doctorTimes != null">
+                    <p v-for="(index, weekDay) in weekDays">
+                        <template v-if="doctorTimes[weekDay] === 'on'">
+                            {{ index }}:
+                            از
+                            {{ doctorTimes['start_' + startEnds[weekDay]] }}
+                            تا
+                            {{ doctorTimes['end_' + startEnds[weekDay]] }}
+                        </template>
+                    </p>
+                </template>
             </div>
             <div class="col-span-8 md:col-span-4 lg:col-span-6">
 
