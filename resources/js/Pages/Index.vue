@@ -13,7 +13,7 @@ const fetchAllHospitals = () => {
         hospitals.value = response.data
     })
 }
-const fetchAllDoctors = ()=> {
+const fetchAllDoctors = () => {
     axios.get('/api/V1/Client/Doctors?city=تهران').then(response => {
         doctors.value = response.data
     })
@@ -71,10 +71,21 @@ onMounted(() => {
             <div class="home-doctors flex gap-4">
                 <div v-for="doctor in doctors" class="rounded-[10px] bg-gray-200">
                     <div class="home-doctors-image-wrapper">
-                        <img src="/images/hospital.png" alt="hospital.name" class="home-doctors-image">
+                        <img alt="hospital.name" class="home-doctors-image" src="/images/profile.jpg">
                     </div>
-                    <h3 class="doctor-title">{{  doctor.name }} {{  doctor.family }}</h3>
-                    <Link :href="route('doctors.show', doctor.id)" class="more-info">اطلاعات بیشتر</Link>
+                    <h3 class="doctor-title text-center">دکتر {{ doctor.name }} {{ doctor.family }}</h3>
+                    <Link :href="route('doctors.show', doctor.id)" class="more-info text-center">متخصص زنان و زایمان
+                    </Link>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <Link :href="route('doctors.show', doctor.id)"
+                              class="bg-blue-400 rounded-full py-1 text-white text-center">
+                            پروفایل
+                        </Link>
+                        <Link :href="route('booking.one', doctor.id)"
+                              class="bg-blue-400 rounded-full py-1 text-white text-center">
+                            نوبت
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

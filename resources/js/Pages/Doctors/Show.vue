@@ -38,13 +38,14 @@ const startEnds = {
         <h1 class="my-2 text-center text-2xl font-bold text-blue-500">
             {{ doctor.name }} {{ doctor.family }}
         </h1>
-        <div>
-            <Link :href="route('booking.one', doctor.id)">دریافت نوبت</Link>
-        </div>
         <div class="grid grid-cols-8 gap-4">
             <div
                 class="hospital-info col-span-8 md:col-span-4 lg:col-span-2 border rounded p-2 bg-white rounded-lg shadow-lg">
 
+                <Link :href="route('booking.one', doctor.id)"
+                      class="bg-blue-400 text-white text-center w-full rounded-full block mb-2">
+                    دریافت نوبت
+                </Link>
                 <template v-if="doctorTimes != null">
                     <p v-for="(index, weekDay) in weekDays">
                         <template v-if="doctorTimes[weekDay] === 'on'">
