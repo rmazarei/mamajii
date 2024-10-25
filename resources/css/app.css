@@ -7,7 +7,7 @@
     display: none;
 }
 
-:root{
+:root {
     --light-blue-color: #c6dfff;
     --dark-gray: #636363;
     --light-gray: #727272;
@@ -16,18 +16,20 @@
 
 @font-face {
     font-family: 'Yekan';
-    src: url('/fonts/Yekan.eot' );
-    src: url('/fonts/Yekan.eot?#iefix' ) format( 'embedded-opentype' ),
-    url('/fonts/Yekan.woff2' ) format( 'woff2' ),
-    url('/fonts/Yekan.woff' ) format( 'woff' ),
-    url('/fonts/Yekan.ttf' ) format( 'truetype' ),
-    url('/fonts/Yekan.svg#Yekan' ) format( 'svg' );
+    src: url('/fonts/Yekan.eot');
+    src: url('/fonts/Yekan.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Yekan.woff2') format('woff2'),
+    url('/fonts/Yekan.woff') format('woff'),
+    url('/fonts/Yekan.ttf') format('truetype'),
+    url('/fonts/Yekan.svg#Yekan') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 html {
     direction: rtl;
 }
+
 body {
     font-family: Yekan, serif;
     background-color: var(--light-light-gray);
@@ -39,6 +41,7 @@ header {
     border-bottom-right-radius: 15px;
     padding: 1.25rem 1rem;
 }
+
 .home-main-slider {
     min-height: 300px;
     padding: 1rem;
@@ -46,11 +49,13 @@ header {
     border-radius: 15px;
     margin-top: 15px;
 }
+
 .home-main-icons {
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
+
 .home-main-icons a {
     display: flex;
     justify-content: center;
@@ -68,16 +73,19 @@ header {
     display: flex;
     flex-flow: column;
 }
+
 .home-doctors > div {
     background-color: #DDD;
     display: flex;
     flex-flow: column;
     padding: 1rem;
 }
+
 .home-hospitals > div .hospital-title {
     margin: 0 1rem;
 
 }
+
 .home-hospitals .more-info {
     background-color: #20c2e1;
     border-radius: 10000px;
@@ -86,6 +94,7 @@ header {
     transition: all .3s;
     margin: 1rem auto;
 }
+
 .home-hospitals .more-info:hover {
     background-color: #6ddaef;
     transition: all .3s;
@@ -111,9 +120,11 @@ footer {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
 }
+
 footer > div > div {
     /*border: 1px solid red;*/
 }
+
 .copy-right {
     color: var(--light-gray);
 }
@@ -122,7 +133,8 @@ footer > div > div {
     display: flex;
     gap: 1rem;
 }
-.rtl-list > div{
+
+.rtl-list > div {
     display: flex;
     width: 100px;
     height: 100px;
@@ -133,7 +145,8 @@ footer > div > div {
     cursor: pointer;
     text-align: center;
 }
-.rtl-list > div:first-child {
+
+.title-one {
     border-width: 0;
     font-size: xx-large;
     cursor: auto;

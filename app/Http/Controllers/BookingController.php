@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class BookingController extends Controller
 {
     public function stepOne(User $user): \Inertia\Response
     {
-        if($user->user_type != 'midwife'){
+        if ($user->user_type != 'midwife') {
             abort(404);
         }
 
@@ -22,30 +21,33 @@ class BookingController extends Controller
 
         $weekDaysList = [
             'sat' => 'شنبه',
-            'sun' => 'یک شنبه',
-            'mon' => 'دو شنبه',
-            'tue' => 'سه شنبه',
-            'wed' => 'چهار شنبه',
-            'thu' => 'پنج شنبه',
+            'sun' => 'یک‌شنبه',
+            'mon' => 'دوشنبه',
+            'tue' => 'سه‌شنبه',
+            'wed' => 'چهارشنبه',
+            'thu' => 'پنج‌شنبه',
             'fri' => 'جمعه',
         ];
         $weekDays = [];
         $counter = 0;
         foreach ($user->times as $title => $value) {
-            if($value == "on") {
+            if ($value == "on") {
 //                echo $title . ": " . $value . '<br>';
+                /*
                 $weekDays[$weekDaysList[$title]] = [
-                    'start' => date("H:i", strtotime(($user->times)['start_' . (($counter+1)/3)-1])),
-                    'end' => date("H:i", strtotime(($user->times)['end_' . (($counter+1)/3)-1]))
+                    'start' => date("H:i", strtotime(($user->times)['start_'.(($counter + 1) / 3) - 1])),
+                    'end' => date("H:i", strtotime(($user->times)['end_'.(($counter + 1) / 3) - 1]))
                 ];
+                */
+                $weekDays[] = $weekDaysList[$title];
             }
             $counter++;
         }
 
 //        dd(date("H:i", strtotime("21:00")));
 
-        dd($weekDays);
+        // dd($weekDays);
 
-        return Inertia::render('Booking/StepOne', ['doctor' => $user, 'months'=>$months]);
+        return Inertia::render('Booking/StepOne', ['doctor' => $user, 'months' => $months, 'weekDays' => $weekDays]);
     }
 }
