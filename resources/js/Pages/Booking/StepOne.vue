@@ -107,6 +107,17 @@ onMounted(() => {
             </template>
         </template>
 
+        <div class="text-red-500">
+            ماه:
+            {{ selectedMonth }}
+            <br>
+            روز:
+            {{ selectedDate }}
+            <br>
+            ماه:
+            {{ selectedHour }}
+        </div>
+
     </AppLayout>
 </template>
 
