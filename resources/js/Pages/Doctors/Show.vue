@@ -42,10 +42,6 @@ const startEnds = {
             <div
                 class="hospital-info col-span-8 md:col-span-4 lg:col-span-2 border rounded p-2 bg-white rounded-lg shadow-lg">
 
-                <Link :href="route('booking.one', doctor.id)"
-                      class="bg-blue-400 text-white text-center w-full rounded-full block mb-2">
-                    دریافت نوبت
-                </Link>
                 <template v-if="doctorTimes != null">
                     <p v-for="(index, weekDay) in weekDays">
                         <template v-if="doctorTimes[weekDay] === 'on'">
@@ -56,10 +52,18 @@ const startEnds = {
                             {{ doctorTimes['end_' + startEnds[weekDay]] }}
                         </template>
                     </p>
+                    <Link :href="route('booking.one', doctor.id)"
+                          class="bg-blue-400 text-white text-center w-full rounded-full block my-2">
+                        دریافت نوبت
+                    </Link>
                 </template>
+                <div class="mt-2 border-t">
+                    <span class="font-bold">آدرس:</span>
+                    <p v-html="doctor.address"></p>
+                </div>
             </div>
             <div class="col-span-8 md:col-span-4 lg:col-span-6">
-
+                <p v-html="doctor.bio"></p>
             </div>
         </div>
 

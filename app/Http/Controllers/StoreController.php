@@ -107,14 +107,6 @@ class StoreController extends Controller
 
 
 
-    //******************New Store Function Start
-
-    function NewStore(Request $request)
-    {
-        $categories=storeCategorie::where('delete_flag','0')->get();
-        return view('Admin/Panel/newstore')->with('categories',$categories);
-    }
-
 
     function NewStoreDone(Request $request)
     {
@@ -194,16 +186,6 @@ class StoreController extends Controller
         $post->delete_flag="1";
         $post->save();
         return redirect()->back();
-    }
-
-    function getpost(Request $request)
-    {
-        $categories=storeCategorie::where('delete_flag','0')->get();
-        $post=store::where('id',$request->id)->first();
-        $images=storeImage::where('store_id',$post->id)->join('Files','store_images_tbls.file_id',"=",'Files.id')->get();
-//        dd($images);
-
-        return view('Admin/Panel/editstore')->with('post',$post)->with('categories',$categories)->with("images",$images);
     }
 
     function update_post_submit(Request $request)

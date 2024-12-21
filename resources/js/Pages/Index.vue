@@ -68,7 +68,7 @@ onMounted(() => {
             <h4>ماماجی‌ها</h4>
         </div>
         <div class="home-main-doctors">
-            <div class="home-doctors flex gap-4">
+            <div v-if="doctors.length > 0" class="home-doctors flex gap-4">
                 <div v-for="doctor in doctors" class="rounded-[10px] bg-gray-200">
                     <div class="home-doctors-image-wrapper">
                         <img alt="hospital.name" class="home-doctors-image" src="/images/profile.jpg">
@@ -87,6 +87,9 @@ onMounted(() => {
                         </Link>
                     </div>
                 </div>
+            </div>
+            <div v-else>
+                در حال بارگزاری
             </div>
         </div>
     </AppLayout>

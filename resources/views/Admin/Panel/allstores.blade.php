@@ -37,7 +37,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        @if(count($posts)>0)
+                        @if(count($stores)>0)
                         <table class="table">
                             <thead>
                             <tr>
@@ -49,19 +49,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($posts as $post)
+                                @foreach($stores as $store)
                                     <tr>
-                                        <td>{{$post->id}}</td>
-                                        <td>{{$post->title}}</td>
+                                        <td>{{$store->id}}</td>
+                                        <td>{{$store->title}}</td>
 
-                                        @if($post->visible=="1")
+                                        @if($store->visible=="1")
                                             <td>{{__('all_strings.vis')}}</td>
                                         @else
                                             <td>{{__('all_strings.hide')}}</td>
                                         @endif
 
-                                        <td><i onclick="Open_Link_Dialog(this,'{{url('/Admin/Store/AllStores')}}/{{$post->id}}')" class="mdi mdi-table-edit" style="color: #F00;font-size: 20px;cursor: pointer;"></i></td>
-                                        <td><a href="{{url('/Admin/Store/AllStores/Remove')}}/{{$post->id}}"><i class="mdi mdi-delete" style="color: #F00;font-size: 20px;"></i></a></td>
+                                        <td><i onclick="Open_Link_Dialog(this,'{{url('/admin/stores')}}/{{$store->id}}')" class="mdi mdi-table-edit" style="color: #F00;font-size: 20px;cursor: pointer;"></i></td>
+                                        <td><a href="{{url('/Admin/Store/AllStores/Remove')}}/{{$store->id}}"><i class="mdi mdi-delete" style="color: #F00;font-size: 20px;"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

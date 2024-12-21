@@ -52,6 +52,13 @@ onMounted(() => {
 
 <template>
     <AppLayout :title='doctor.name + " " + doctor.family'>
+
+        <h1 class="text-2xl text-blue-500 text-center my-4 font-bold">
+            دریافت نوبت دکتر
+            {{ doctor.name }}
+            {{ doctor.family }}
+        </h1>
+
         <div class="title-one mt-5">ماه</div>
         <div class="rtl-list">
             <div v-for="(monthYear, index) in months" :class="{selected: selectedMonth === index}"
@@ -106,6 +113,17 @@ onMounted(() => {
                 </div>
             </template>
         </template>
+
+        <div class="text-red-500">
+            ماه:
+            {{ selectedMonth }}
+            <br>
+            روز:
+            {{ selectedDate }}
+            <br>
+            ماه:
+            {{ selectedHour }}
+        </div>
 
     </AppLayout>
 </template>

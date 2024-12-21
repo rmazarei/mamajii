@@ -30,18 +30,20 @@ class BookingController extends Controller
         ];
         $weekDays = [];
         $counter = 0;
-        foreach ($user->times as $title => $value) {
-            if ($value == "on") {
+        if($user->times != null && count($user->times) > 0) {
+            foreach ($user->times as $title => $value) {
+                if ($value == "on") {
 //                echo $title . ": " . $value . '<br>';
-                /*
-                $weekDays[$weekDaysList[$title]] = [
-                    'start' => date("H:i", strtotime(($user->times)['start_'.(($counter + 1) / 3) - 1])),
-                    'end' => date("H:i", strtotime(($user->times)['end_'.(($counter + 1) / 3) - 1]))
-                ];
-                */
-                $weekDays[] = $weekDaysList[$title];
+                    /*
+                    $weekDays[$weekDaysList[$title]] = [
+                        'start' => date("H:i", strtotime(($user->times)['start_'.(($counter + 1) / 3) - 1])),
+                        'end' => date("H:i", strtotime(($user->times)['end_'.(($counter + 1) / 3) - 1]))
+                    ];
+                    */
+                    $weekDays[] = $weekDaysList[$title];
+                }
+                $counter++;
             }
-            $counter++;
         }
 
 //        dd(date("H:i", strtotime("21:00")));

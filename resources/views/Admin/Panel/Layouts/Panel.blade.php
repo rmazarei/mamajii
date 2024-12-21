@@ -135,7 +135,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/Dashboard')}}">
+                        <a class="nav-link" href="{{url('/admin')}}">
                             <span class="menu-title">{{__('all_strings.Dashboard')}}</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
@@ -147,7 +147,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/Admin/NewPost')}}">
+                        <a class="nav-link" href="{{url('/admin/newPost')}}">
                             <span class="menu-title">{{__('all_strings.newpost')}}</span>
                             <i class="mdi mdi-package-variant-closed menu-icon"></i>
                         </a>
@@ -184,10 +184,10 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                                                                                href="{{url('/Admin/Store/CatStore')}}">{{__('all_strings.categories')}}</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="{{url('/Admin/Store/NewStore')}}">{{__('all_strings.new_product')}}</a>
+                                                        href="{{url('/admin/stores/create')}}">{{__('all_strings.new_product')}}</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
-                                                        href="{{url('/Admin/Store/AllStores')}}">{{__('all_strings.allstorepost')}}</a>
+                                                        href="{{url('/admin/stores')}}">{{__('all_strings.allstorepost')}}</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
                                                         href="{{url('/Admin/Store/AllOrders')}}">{{__('all_strings.orders')}}</a>
@@ -301,7 +301,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
 
                         <form action="{{route('logout')}}">
                             @csrf
-                            <button type="submit" class="nav-link" >
+                            <button type="submit" class="bg-transparent border-0 nav-link w-100" >
                                 <span class="menu-title">{{__('all_strings.Exit')}}</span>
                                 <i class="mdi mdi-logout menu-icon"></i>
                             </button>

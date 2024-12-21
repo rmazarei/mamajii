@@ -11,7 +11,8 @@
                     <p class="card-description"
                        style="text-align: center;">{{__('all_strings.PleaseFillUnderTextFeilds')}}</p>
                     <form enctype="multipart/form-data" class="forms-sample" method="post"
-                          action="{{url('/Admin/UserManager/Edit_User_Submit')}}">
+                          action="{{route('admin.users.update', $user->id)}}">
+                        @method('PUT')
                         <input type="hidden" value="{{$user->id}}" name="user_id"/>
                         <input type="hidden" value="{{csrf_token()}}" name="_token"/>
                         <div class="form-group">
@@ -112,7 +113,8 @@
                         <!--Open Street Map Start-->
                         <!--Map Start-->
                         <input id="location_text_input" type="hidden" name="location" value="0,0">
-                        <div style="width:100%; height:300px;display: flex;justify-content: center;align-items: center;">
+                        <div
+                            style="width:100%; height:300px;display: flex;justify-content: center;align-items: center;">
                             <div id="map" style="width:100%; height:300px;"></div>
                             <div style="position: absolute;"><i style="color:var(--primary);font-size: 50px;"
                                                                 class="mdi mdi-map-marker"></i></div>

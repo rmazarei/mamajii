@@ -342,7 +342,7 @@ class AdminController extends Controller
 
     //******************New Post Function Start
 
-    function NewPost(Request $request)
+    function newPost(Request $request)
     {
         $categories = Category::where('delete_flag', '0')->get();
         return view('Admin/Panel/newpost')->with('categories', $categories);
@@ -633,12 +633,11 @@ class AdminController extends Controller
 
         $checkMobile = User::where('phone', $request->phone)->orWhere('email', $request->email)->first();
 
-        if($checkMobile){
+        if ($checkMobile) {
 
-            return view('Admin.Panel.notDone', ['message'=> 'شماره موبایل یا ایمیل تکراری است']);
+            return view('Admin.Panel.notDone', ['message' => 'شماره موبایل یا ایمیل تکراری است']);
             return redirect()->back()->with('message', 'شماره موبایل یا ایمیل تکراری است');
         }
-
 
 
         $profile_image_id = 0;
@@ -676,7 +675,7 @@ class AdminController extends Controller
         $user->user_type = $request->user_type;
         $user->password = hash("sha256", $request->password);
         $user->login_token = hash("sha256", $request->password."-".$request->username);
-        if($request->user_type == 'midwife'){
+        if ($request->user_type == 'midwife') {
             $user->hospital_id = $request->hospital;
         }
         if ($profile_image_id != 0) {
@@ -838,7 +837,8 @@ class AdminController extends Controller
         return view('Admin/Panel/edit_user')->with('User', User::where('id', $request->User_Id)->get()[0]);
     }
 
-    function Get_Edit_User_Submit(Request $request)
+//    function Get_Edit_User_Submit(Request $request)
+    function UpdateUser(Request $request, User $user)
     {
 
         $profile_image_id = 0;
@@ -853,7 +853,7 @@ class AdminController extends Controller
         $location = explode(",", $request->location);
 
         //Get Edit User Data
-        $user = User::where('id', $request->user_id)->get()[0];
+//        $user = User::where('id', $request->user_id)->get()[0];
         $user->username = $request->username;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -887,8 +887,8 @@ class AdminController extends Controller
 
 
         $user->save();
-
-        return redirect(url("/Admin/Done"));
+        return view('Admin.Panel.done');
+//        return redirect(url("/Admin/Done"));
     }
 
     //**********************Get User Manager End
