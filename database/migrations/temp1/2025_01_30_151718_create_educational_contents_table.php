@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title'); // Content title
+            $table->string('cover')->nullable(); // Content title
             $table->text('description')->nullable(); // Content description
             $table->integer('price')->default(0); // Price of the content (0 = free)
             $table->float('discount', 8, 2)->default(0); // Discount value (float)
