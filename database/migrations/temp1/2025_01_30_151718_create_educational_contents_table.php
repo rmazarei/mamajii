@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('educational_contents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title'); // Content title
             $table->text('description')->nullable(); // Content description
             $table->integer('price')->default(0); // Price of the content (0 = free)

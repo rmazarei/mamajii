@@ -1,6 +1,7 @@
 @extends('Admin.Panel.Layouts.NewPanel')
 
 @section('content')
+
     <div class="main-panel">
         <div class="content-wrapper">
 
@@ -13,73 +14,12 @@
                 </h3>
             </div>
 
-            <div class="row flex-row-reverse">
-                <div class="col-lg-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-
-
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>شناسه</th>
-                                    <th>عنوان</th>
-                                    <th>قیمت</th>
-                                    <th>تخفیف</th>
-                                    <th>وضعیت</th>
-                                    <th>عملیات</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($contents as $content)
-                                    <tr>
-                                        <td>{{ $content->id }}</td>
-                                        <td>{{ $content->title }}</td>
-                                        <td>{{ $content->price == 0 ? 'رایگان' : 'تومان ' . number_format($content->price) }}</td>
-                                        <td>{{ number_format($content->discount) }}</td>
-                                        <td>
-                                            @if ($content->trashed())
-                                                <span class="text-danger">حذف شده</span>
-                                            @else
-                                                <span class="text-success">فعال</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($content->trashed())
-                                                <form action="{{ route('admin.educational_contents.restore', $content->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-info">بازیابی</button>
-                                                </form>
-                                                <form action="{{ route('admin.educational_contents.forceDelete', $content->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">حذف دائمی</button>
-                                                </form>
-                                            @else
-                                                <a href="{{ route('admin.educational_contents.edit', $content->id) }}" class="btn btn-warning">ویرایش</a>
-                                                <form action="{{ route('admin.educational_contents.destroy', $content->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">حذف</button>
-                                                </form>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-
-
-                        </div>
-                    </div>
-                </div>
-
-
+            <div class="row">
                 <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
                             <div class="container">
-                                <h1 class="mb-4 text-right">افزودن محتوای آموزشی جدید</h1>
+                                <h1 class="mb-4">افزودن محتوای آموزشی جدید</h1>
 
                                 <!-- Display Validation Errors -->
                                 @if ($errors->any())
@@ -146,10 +86,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </div>
 @endsection

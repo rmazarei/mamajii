@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\EducationalContent;
+use App\Models\EducationalContentFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EducationalContentController extends Controller
 {
@@ -34,6 +37,7 @@ class EducationalContentController extends Controller
 
         // Create the educational content
         $content = EducationalContent::create([
+            'user_id' => Auth::id(),
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
@@ -95,5 +99,41 @@ class EducationalContentController extends Controller
 
         return redirect()->route('admin.educational_contents.index')
             ->with('success', 'Educational content updated successfully.');
+    }
+
+    public function destroy(EducationalContent $educationalContent)
+    {
+        $educationalContent->delete(); // Soft delete the content
+
+        return redirect()->route('admin.educational_contents.index')
+            ->with('success', 'Educational content deleted successfully.');
+    }
+
+    public function restore($id)
+    {
+        $content = EducationalContent::withTrashed()->findOrFail($id); // Retrieve the soft-deleted record
+        $content->restore(); // Restore the record
+
+        return redirect()->route('admin.educational_contents.index')
+            ->with('success', 'Educational content restored successfully.');
+    }
+
+    /**
+     * Delete a file from an educational content.
+     *
+     * @param  EducationalContentFile  $file
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroyFile(EducationalContentFile $file)
+    {
+        // Delete the file from storage
+        if (Storage::exists('public/' . $file->file_path)) {
+            Storage::delete('public/' . $file->file_path);
+        }
+
+        // Delete the file record from the database
+        $file->delete();
+
+        return redirect()->back()->with('success', 'فایل با موفقیت حذف شد.');
     }
 }

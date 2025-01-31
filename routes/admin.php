@@ -38,6 +38,10 @@ Route::name('admin.')->middleware('auth', 'AdminPanelAuthMiddleware')->group(fun
     Route::get('/stores', [\App\Http\Controllers\Admin\StoreController::class, 'index'])->name('stores.index');
     Route::get('/stores/create', [\App\Http\Controllers\Admin\StoreController::class, 'create'])->name('stores.create');
     Route::get('/stores/{store}', [\App\Http\Controllers\Admin\StoreController::class, 'show'])->name('stores.show');
-    
-    Route::resource('educational_contents', EducationalContentController::class);
+
+    Route::resource('educational_contents', EducationalContentController::class);// Additional routes for soft delete functionality
+    Route::post('educational_contents/{id}/restore', [EducationalContentController::class, 'restore'])->name('educational_contents.restore');
+    Route::delete('educational_contents/{id}/forceDelete', [EducationalContentController::class, 'forceDelete'])->name('educational_contents.forceDelete');
+    Route::delete('educational_contents/files/{file}', [EducationalContentController::class, 'destroyFile'])
+        ->name('educational_contents.files.destroy');
 });

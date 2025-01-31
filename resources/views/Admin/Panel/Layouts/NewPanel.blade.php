@@ -404,3 +404,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
 
 
         </nav>
+
+        @yield('content')
+
+@include('Admin.Panel.Layouts.Footer_Empty')
