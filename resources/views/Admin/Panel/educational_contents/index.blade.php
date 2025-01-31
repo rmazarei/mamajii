@@ -102,6 +102,12 @@
                                         <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
                                     </div>
 
+                                    <!-- Cover -->
+                                    <div class="form-group">
+                                        <label for="cover">تصویر نمایه (مربع)</label>
+                                        <input type="file" name="cover" id="cover" class="form-control" value="{{ old('title') }}" required>
+                                    </div>
+
                                     <!-- Description -->
                                     <div class="form-group">
                                         <label for="description">توضیحات</label>

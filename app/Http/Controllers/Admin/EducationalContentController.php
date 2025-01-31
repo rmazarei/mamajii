@@ -47,7 +47,7 @@ class EducationalContentController extends Controller
         // Handle file uploads (if any)
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $file) {
-                $filePath = $file->store('educational_content_files', 'public'); // Store file in the 'public' disk
+                $filePath = $file->store('educational_content_files/' . $content->id, 'public'); // Store file in the 'public' disk
                 $content->files()->create([
                     'file_name' => $file->getClientOriginalName(),
                     'file_path' => $filePath,
@@ -55,6 +55,14 @@ class EducationalContentController extends Controller
                 ]);
             }
         }
+
+
+        // Handle file uploads (if any)
+        if ($request->hasFile('cover')) {
+                $filePath = $file->store('educational_content_files/' . $content->id, 'public'); // Store file in the 'public' disk
+                $content->cover = $filePath;
+        }
+        $content->save();
 
         return redirect()->route('admin.educational_contents.index')
             ->with('success', 'Educational content created successfully.');
