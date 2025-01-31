@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\EducationalContentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
