@@ -38,4 +38,6 @@ Route::name('admin.')->middleware('auth', 'AdminPanelAuthMiddleware')->group(fun
     Route::get('/stores', [\App\Http\Controllers\Admin\StoreController::class, 'index'])->name('stores.index');
     Route::get('/stores/create', [\App\Http\Controllers\Admin\StoreController::class, 'create'])->name('stores.create');
     Route::get('/stores/{store}', [\App\Http\Controllers\Admin\StoreController::class, 'show'])->name('stores.show');
+    
+    Route::resource('educational_contents', EducationalContentController::class);
 });
