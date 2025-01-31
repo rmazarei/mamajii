@@ -347,7 +347,7 @@
 
 
 
-                            <button type="submit" style="width: 100%;" class="btn btn-gradient-primary mr-2">{{__('all_strings.done')}}</btn>
+                            <button type="submit" style="width: 100%;" class="btn btn-gradient-primary mr-2">{{__('all_strings.done')}}</button>
 
                         </form>
                     </div>

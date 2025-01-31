@@ -23,6 +23,7 @@ Route::name('admin.')->middleware('auth', 'AdminPanelAuthMiddleware')->group(fun
     Route::get('visits', [AdminController::class, 'visitsIndex'])->name('visits.index');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 //    Route::get('/users', [AdminController::class, 'getUserManager'])->name('users.manage');
     Route::get('/users/create', [AdminController::class, 'createUser'])->name('users.create');
     Route::post('/users', [AdminController::class, 'getNewUserDone'])->name('users.create.done');
@@ -34,6 +35,6 @@ Route::name('admin.')->middleware('auth', 'AdminPanelAuthMiddleware')->group(fun
     Route::get('/newPost', [AdminController::class, 'newPost'])->name('posts.create');
 
     Route::get('/stores', [\App\Http\Controllers\Admin\StoreController::class, 'index'])->name('stores.index');
-    Route::get('/stores/{store}', [\App\Http\Controllers\Admin\StoreController::class, 'show'])->name('stores.show');
     Route::get('/stores/create', [\App\Http\Controllers\Admin\StoreController::class, 'create'])->name('stores.create');
+    Route::get('/stores/{store}', [\App\Http\Controllers\Admin\StoreController::class, 'show'])->name('stores.show');
 });

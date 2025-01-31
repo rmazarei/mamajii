@@ -299,7 +299,7 @@ $user_profiel_data = \Illuminate\Support\Facades\Auth::user();
                     </li>
                     <li class="nav-item">
 
-                        <form action="{{route('logout')}}">
+                        <form action="{{route('logout')}}" method="post">
                             @csrf
                             <button type="submit" class="bg-transparent border-0 nav-link w-100" >
                                 <span class="menu-title">{{__('all_strings.Exit')}}</span>

@@ -16,7 +16,7 @@ class StoreController extends Controller
     function create(Request $request)
     {
         $categories=StoreCategory::where('delete_flag','0')->get();
-        return view('Admin/Panel/newStore')->with('categories',$categories);
+        return view('Admin.Panel.newStore')->with('categories',$categories);
     }
 
     function index(Request $request)
